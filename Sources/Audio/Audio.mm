@@ -162,9 +162,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		
 	} else if ([keyPath isEqualToString:@"intervall"]) {
 		Cloud * cloud = object;
-		#warning account for passed time
-		//int passedTime = [self.intervall intValue] - nextGrainCounter;
-		cloud->nextGrainCounter = [cloud.intervall intValue] * mDataFormat->mSampleRate / 1000;
+		cloud->nextGrainCounter = ([cloud.intervall intValue] * mDataFormat->mSampleRate / 1000) - cloud->nextGrainCounter;
 	} else if ([keyPath isEqualToString:@"audioFileUrl"]) {
 		Cloud * cloud = object;
 		[self openAudioFileOfCloud:cloud];
@@ -176,7 +174,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		CAExtAudioFile* audioFile = new CAExtAudioFile();
 		audioFile->OpenURL((CFURLRef)objc_unretainedPointer(cloud.audioFileUrl));
 		audioFile->SetClientFormat(*mDataFormat);
-		cloud->numberOfFrames = audioFile->GetNumberFrames();
+		cloud->numberOfFrames = (UInt32)audioFile->GetNumberFrames();
 		cloud->audioFileBuffer->AllocateBuffers(mDataFormat->FramesToBytes(cloud->numberOfFrames));
 		audioFile->Read(cloud->numberOfFrames, &cloud->audioFileBuffer->GetModifiableBufferList());
 		

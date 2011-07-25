@@ -24,7 +24,7 @@ typedef enum {
 	
 @public
 	// Audio related properties
-	int nextGrainCounter;
+	UInt32 nextGrainCounter;
 	CABufferList* audioFileBuffer;
 	UInt32 numberOfFrames;
 }
