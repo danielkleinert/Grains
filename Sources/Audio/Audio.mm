@@ -16,49 +16,52 @@
 
 static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inCompleteAQBuffer) 
 {
-	Audio* audio = (Audio*)objc_unretainedObject(inUserData);
-	
-	Float32* outBuffer = (Float32*)inCompleteAQBuffer->mAudioData;
-	memset(outBuffer, 0, inCompleteAQBuffer->mAudioDataBytesCapacity);
-	
-	// play Grains
-	for (Grain* grain in audio.grains) {
-		audio->tempBufferList->Reset();
-		audio->tempBufferList->AllocateBuffers(inCompleteAQBuffer->mAudioDataBytesCapacity);
-		[grain synthesizeAudioOf:audio to:inCompleteAQBuffer];
-		if (grain.state == finished) [audio.grains performSelector:@selector(removeObject:) withObject:grain afterDelay:0];
-	}
-	
-	// playback
-	inCompleteAQBuffer->mAudioDataByteSize = inCompleteAQBuffer->mAudioDataBytesCapacity;
-	AudioQueueEnqueueBuffer(inAQ, inCompleteAQBuffer,  0, NULL);
-	
-	// write to file
-	if (audio->isRecording){
-		AudioBufferList buffer;
-		buffer.mNumberBuffers = 1;
-		buffer.mBuffers[0].mData = outBuffer;
-		buffer.mBuffers[0].mDataByteSize = inCompleteAQBuffer->mAudioDataBytesCapacity;
-		buffer.mBuffers[0].mNumberChannels = 2;
-		audio->recordingFile->Write(audio->framesPerBuffer, &buffer);
-	}
-	
-	// enque new grains
-	for(Cloud* cloud in audio->clouds){
-		SInt32 frames = audio->framesPerBuffer;
-		int startsIn = 0;
-		while (frames > 0) {
-			if (cloud->nextGrainCounter < frames) {
-				startsIn += cloud->nextGrainCounter;
-				[cloud update];
-				Grain* grain = [[Grain alloc] initWithCloud:cloud in:startsIn];
-				[[audio grains] addObject:grain];
-				[audio->document.windowController.grainView addGrainFromCloud:cloud in:[NSNumber numberWithFloat:(float)startsIn/audio->mDataFormat->mSampleRate]];
-				frames -= cloud->nextGrainCounter;
-				cloud->nextGrainCounter = [cloud.intervall intValue] * audio->mDataFormat->mSampleRate / 1000;
-			} else {
-				cloud->nextGrainCounter -= frames;
-				frames = 0;
+	@autoreleasepool { // The AudioQueue thread has no own autoreleasepool so we use ower own.
+		
+		Audio* audio = (Audio*)objc_unretainedObject(inUserData);
+		
+		Float32* outBuffer = (Float32*)inCompleteAQBuffer->mAudioData;
+		memset(outBuffer, 0, inCompleteAQBuffer->mAudioDataBytesCapacity);
+		
+		// play Grains
+		for (Grain* grain in audio.grains) {
+			audio->tempBufferList->Reset();
+			audio->tempBufferList->AllocateBuffers(inCompleteAQBuffer->mAudioDataBytesCapacity);
+			[grain synthesizeAudioOf:audio to:inCompleteAQBuffer];
+			if (grain.state == finished) [audio.grains performSelector:@selector(removeObject:) withObject:grain afterDelay:0];
+		}
+		
+		// playback
+		inCompleteAQBuffer->mAudioDataByteSize = inCompleteAQBuffer->mAudioDataBytesCapacity;
+		AudioQueueEnqueueBuffer(inAQ, inCompleteAQBuffer,  0, NULL);
+		
+		// write to file
+		if (audio->isRecording){
+			AudioBufferList buffer;
+			buffer.mNumberBuffers = 1;
+			buffer.mBuffers[0].mData = outBuffer;
+			buffer.mBuffers[0].mDataByteSize = inCompleteAQBuffer->mAudioDataBytesCapacity;
+			buffer.mBuffers[0].mNumberChannels = 2;
+			audio->recordingFile->Write(audio->framesPerBuffer, &buffer);
+		}
+		
+		// enque new grains
+		for(Cloud* cloud in audio->clouds){
+			SInt32 frames = audio->framesPerBuffer;
+			int startsIn = 0;
+			while (frames > 0) {
+				if (cloud->nextGrainCounter < frames) {
+					startsIn += cloud->nextGrainCounter;
+					[cloud update];
+					Grain* grain = [[Grain alloc] initWithCloud:cloud in:startsIn];
+					[[audio grains] addObject:grain];
+					[audio->document.windowController.grainView addGrainFromCloud:cloud in:[NSNumber numberWithFloat:(float)startsIn/audio->mDataFormat->mSampleRate]];
+					frames -= cloud->nextGrainCounter;
+					cloud->nextGrainCounter = [cloud.intervall intValue] * audio->mDataFormat->mSampleRate / 1000;
+				} else {
+					cloud->nextGrainCounter -= frames;
+					frames = 0;
+				}
 			}
 		}
 	}
@@ -89,7 +92,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		
 		tempBufferList = CABufferList::New(*mDataFormat);
 		
-		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (void*)objc_unretainedPointer(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
+		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (void*)objc_unretainedPointer(self), nil, kCFRunLoopCommonModes, 0, &mQueue);
 		if(result) NSLog(@"AudioQueueNew failed");
 		
 		for (int i = 0; i < kNumberBuffers; ++i) {
