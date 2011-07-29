@@ -44,6 +44,8 @@
 		BBBF615B13DDB7FA002FF327 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D5E13D995B6009D51DA /* CAXException.cpp */; };
 		BBBF616613DDBB25002FF327 /* VVBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBF616413DDBB25002FF327 /* VVBasics.framework */; };
 		BBBF616713DDBB25002FF327 /* VVOSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBF616513DDBB25002FF327 /* VVOSC.framework */; };
+		BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCB2DD813E17B20003E5EE1 /* Interpolate.m */; };
+		BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */; };
 		BBCF2C5413D986CC009D51DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2C5313D986CC009D51DA /* Cocoa.framework */; };
 		BBCF2C7F13D98B8F009D51DA /* generate.ck in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7A13D98B8F009D51DA /* generate.ck */; };
 		BBCF2C8013D98B8F009D51DA /* Sawtooth1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7B13D98B8F009D51DA /* Sawtooth1s.aif */; };
@@ -112,6 +114,10 @@
 /* Begin PBXFileReference section */
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		BBBF616513DDBB25002FF327 /* VVOSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVOSC.framework; sourceTree = "<group>"; };
+		BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 3.xcdatamodel"; sourceTree = "<group>"; };
+		BBCB2DD713E17B20003E5EE1 /* Interpolate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpolate.h; sourceTree = "<group>"; };
+		BBCB2DD813E17B20003E5EE1 /* Interpolate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interpolate.m; sourceTree = "<group>"; };
+		BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Interpolate.xib; sourceTree = "<group>"; };
 		BBCF2C4F13D986CC009D51DA /* Grains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF2C5313D986CC009D51DA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BBCF2C5613D986CC009D51DA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -360,6 +366,9 @@
 		BBCF2C7613D988D9009D51DA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */,
+				BBCB2DD713E17B20003E5EE1 /* Interpolate.h */,
+				BBCB2DD813E17B20003E5EE1 /* Interpolate.m */,
 				BBCF2CDF13D99477009D51DA /* Cloud.h */,
 				BBCF2CE013D99477009D51DA /* Cloud.mm */,
 				BBCF2CE113D99477009D51DA /* Connection.h */,
@@ -370,7 +379,6 @@
 				BBCF2CE613D99477009D51DA /* FixedValue.m */,
 				BBCF2CE713D99477009D51DA /* JavaScript.h */,
 				BBCF2CE813D99477009D51DA /* JavaScript.m */,
-				BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */,
 				BBCF2CEC13D99477009D51DA /* OSCReceive.h */,
 				BBCF2CED13D99477009D51DA /* OSCReceive.m */,
 				BBCF2CEE13D99477009D51DA /* Queue.h */,
@@ -431,6 +439,7 @@
 				BBCF2CD413D99418009D51DA /* OSCReceive.xib */,
 				BBCF2CD513D99418009D51DA /* Queue.xib */,
 				BBCF2CD613D99418009D51DA /* Random.xib */,
+				BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */,
 				BBCF2CC613D993D6009D51DA /* NewObjectView.h */,
 				BBCF2CC713D993D6009D51DA /* NewObjectView.m */,
 				BBCF2CBD13D9939B009D51DA /* GrainView.h */,
@@ -635,6 +644,7 @@
 				BBCF2CDD13D99418009D51DA /* Queue.xib in Resources */,
 				BBCF2CDE13D99418009D51DA /* Random.xib in Resources */,
 				BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */,
+				BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +711,7 @@
 				BBBF613913DDB40B002FF327 /* Audio.mm in Sources */,
 				BBBF613B13DDB40F002FF327 /* Grain.mm in Sources */,
 				BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */,
+				BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,10 +828,11 @@
 		BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */,
 				BBCF2CEA13D99477009D51DA /* MyDocument 2.xcdatamodel */,
 				BBCF2CEB13D99477009D51DA /* MyDocument.xcdatamodel */,
 			);
-			currentVersion = BBCF2CEA13D99477009D51DA /* MyDocument 2.xcdatamodel */;
+			currentVersion = BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */;
 			path = MyDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
