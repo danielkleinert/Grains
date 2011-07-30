@@ -82,6 +82,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		grains = [NSMutableArray array];
 		nextGrainCounters = [NSMutableDictionary dictionary];
 		isRecording = NO;
+		volume = 0.8;
 		
 		double sampleRate = 44100.0;
 		UInt32 numChannels = 2;
@@ -100,14 +101,28 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 			if(result) NSLog(@"AudioQueueAllocateBuffer failed");
 			AQBufferCallback ((void*)objc_unretainedPointer(self), mQueue, mBuffers[i]);
 		}	
-		
-		// lets start playing now 
-		result = AudioQueueStart(mQueue, NULL);
-		if(result) NSLog(@"AudioQueueStart failed");
 	}
 	return self;
 }
 
+- (void)play{
+	OSStatus result = AudioQueueStart(mQueue, NULL);
+	if(result) NSLog(@"AudioQueueStart failed");
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		OSStatus result = AudioQueueSetParameter(mQueue, kAudioQueueParam_Volume, volume);
+		if(result) NSLog(@"AudioQueueSetParameter(kAudioQueueParam_Volume) failed");
+	});
+
+}
+
+- (void)pause{
+	OSStatus result = AudioQueueSetParameter(mQueue, kAudioQueueParam_Volume, 0);
+	if(result) NSLog(@"AudioQueueSetParameter(kAudioQueueParam_Volume) failed");
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_current_queue(), ^{
+		OSStatus result = AudioQueuePause(mQueue);
+		if(result) NSLog(@"AudioQueuePause failed");
+	});
+}
 
 - (void)stop{
 	[document removeObserver:self forKeyPath:@"clouds"];
@@ -117,6 +132,12 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 	}
 	OSStatus result = AudioQueueDispose(mQueue, true);
 	if(result) NSLog(@"AudioQueueDispose(true) failed");
+}
+
+- (void)setVolume:(float)newVolume{
+	volume = newVolume;
+	OSStatus result = AudioQueueSetParameter(mQueue, kAudioQueueParam_Volume, newVolume);
+	if(result) NSLog(@"AudioQueueSetParameter(kAudioQueueParam_Volume) failed");
 }
 
 - (void)startRecordingToURL:(NSURL*)url{

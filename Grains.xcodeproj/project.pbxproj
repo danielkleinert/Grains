@@ -44,6 +44,8 @@
 		BBBF615B13DDB7FA002FF327 /* CAXException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D5E13D995B6009D51DA /* CAXException.cpp */; };
 		BBBF616613DDBB25002FF327 /* VVBasics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBF616413DDBB25002FF327 /* VVBasics.framework */; };
 		BBBF616713DDBB25002FF327 /* VVOSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBBF616513DDBB25002FF327 /* VVOSC.framework */; };
+		BBC8F9E113E2BACE0011CA52 /* VVBasics.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBBF616413DDBB25002FF327 /* VVBasics.framework */; };
+		BBC8F9E213E2BACE0011CA52 /* VVOSC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBBF616513DDBB25002FF327 /* VVOSC.framework */; };
 		BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCB2DD813E17B20003E5EE1 /* Interpolate.m */; };
 		BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */; };
 		BBCF2C5413D986CC009D51DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2C5313D986CC009D51DA /* Cocoa.framework */; };
@@ -106,6 +108,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BBC8F9E113E2BACE0011CA52 /* VVBasics.framework in CopyFiles */,
+				BBC8F9E213E2BACE0011CA52 /* VVOSC.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,11 +435,11 @@
 		BBCF2C9413D98CF6009D51DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF2CD313D99418009D51DA /* MyDocument.xib */,
 				BBCF2CCF13D99418009D51DA /* Cloud.xib */,
 				BBCF2CD013D99418009D51DA /* FixedValue.xib */,
 				BBCF2CD113D99418009D51DA /* JavaScript.xib */,
 				BBCF2CD213D99418009D51DA /* MainMenu.xib */,
-				BBCF2CD313D99418009D51DA /* MyDocument.xib */,
 				BBCF2CD413D99418009D51DA /* OSCReceive.xib */,
 				BBCF2CD513D99418009D51DA /* Queue.xib */,
 				BBCF2CD613D99418009D51DA /* Random.xib */,

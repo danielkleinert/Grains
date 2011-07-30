@@ -20,6 +20,9 @@
 @property (readonly) NSMutableArray* clouds;
 @property (readonly) MyWindowController *windowController;
 
+- (void)pauseAudio;
+- (void)playAudio;
+- (void)setVolume:(float)volume;
 - (void)startRecording;
 - (void)stopRecording;
 

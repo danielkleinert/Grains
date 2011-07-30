@@ -30,7 +30,7 @@
 		
 		// initialise Audio
 		audio = [[Audio alloc] initWithDocument:self];
-		
+		[audio play];
     }
     return self;
 }
@@ -92,7 +92,17 @@
 	[audio stopRecording];
 }
 
+- (void)pauseAudio{
+	[audio pause];
+}
 
+- (void)playAudio{
+	[audio play];
+}
+
+- (void)setVolume:(float)volume{
+	[audio setVolume:volume];
+}
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
 	if ([keyPath isEqualToString:@"objects"]) {

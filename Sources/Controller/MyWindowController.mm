@@ -77,7 +77,7 @@
 #pragma mark -
 #pragma mark *** Toolbar ***
 
-- (IBAction)ToggleView:(id)sender
+- (IBAction)toggleView:(id)sender
 {
 	switch ([sender selectedSegment]) {
 		case 0: // Grains
@@ -95,14 +95,14 @@
 	}
 }
 
-- (IBAction)TogglePlaybackControlls:(id)sender
+- (IBAction)togglePlaybackControlls:(id)sender
 {
 	switch ([sender selectedSegment]) {
 		case 0: // Play/Stop
 			if ([sender isSelectedForSegment:[sender selectedSegment]]){
-				
+				[document playAudio];
 			} else {
-				
+				[document pauseAudio];
 			}
 			break;
 		case 1: // Record
@@ -113,6 +113,10 @@
 			}
 			break;
 	}
+}
+
+- (IBAction)setVolume:(id)sender{
+	[document setVolume:[(NSSlider*)sender floatValue]];
 }
 
 #pragma mark -

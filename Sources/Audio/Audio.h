@@ -29,6 +29,7 @@
 	AudioQueueBufferRef					mBuffers[kNumberBuffers];
 	UInt32								framesPerBuffer;
 	CABufferList 						*tempBufferList;
+	float								volume;
 	
 	MyDocument __unsafe_unretained 		*document;
 	NSMutableArray 					 	*clouds;
@@ -39,15 +40,18 @@
 	CAExtAudioFile						*recordingFile;
 	Boolean								isRecording;
 	
-	
 }
 
 @property (nonatomic, retain) NSArray* clouds;
 @property (readonly) NSMutableArray* grains;
 
 - (id)initWithDocument:(MyDocument*)myDocument;
+- (void)play;
+- (void)pause;
 - (void)stop;
 
+- (void)setVolume:(float)volume;
+	
 - (void)openAudioFileOfCloud:(Cloud*)cloud;
 
 - (void)startRecordingToURL:(NSURL*)url;
