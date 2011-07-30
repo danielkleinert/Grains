@@ -52,6 +52,7 @@
     return self;
 }
 
+inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x);}
 
 - (NSArray*)valuesForLayerProperty:(NSString*)key andCloud:(Cloud*)cloud normalisedTo:(float)normelisation{
 	NSMutableArray* returnValues = [NSMutableArray array];
@@ -70,6 +71,10 @@
 		float t = 0;
 		while (t < duration) {
 			float value = (acceleration / 2) * (float)pow(t,2) + (velocity * t) + initialValue;
+			value = clamp(value, propertyMin, propertyMax);
+			if ([key isEqualToString: @"playbackRate"]) {
+				value = logf(value)/logf(powf(propertyMax, 2.0/propertyMax))+propertyMax/2;
+			}
 			value = (value-propertyMin)/(propertyMax-propertyMin) * normelisation;
 			[returnValues addObject:[NSNumber numberWithFloat:value]];
 			t += 1./60.;
