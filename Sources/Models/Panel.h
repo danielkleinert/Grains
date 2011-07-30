@@ -11,8 +11,7 @@
 }
 @property (nonatomic, retain) NSNumber * width;
 @property (nonatomic, retain) NSNumber * verticalOffset;
-@property (nonatomic, retain) NSData * colorAsData;
-//@property (nonatomic, retain) UNKNOWN_TYPE titleColor;
+@property (nonatomic, retain) NSColor* titleColor;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * tag;
 @property (nonatomic, retain) NSNumber * originY;
@@ -24,8 +23,5 @@
 
 
 + (NSArray *)keysForNonBoundsProperties;
-
-- (NSColor *)titleColor;
-- (void)setTitleColor:(NSColor *)aColor;
 
 @end

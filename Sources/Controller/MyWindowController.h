@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import <EFLaceViewLib/EFLaceview.h>
 #import "GrainView.h"
-@class MyDocument;
 
 @interface MyWindowController : NSWindowController {
 	NSArrayController __unsafe_unretained *objectsController;
@@ -21,8 +20,7 @@
 	GrainView __unsafe_unretained *grainView;
 	
 	NSView __unsafe_unretained *viewLoadRef;
-	
-	MyDocument __unsafe_unretained *document;
+
 }
 
 @property (assign) IBOutlet NSArrayController* objectsController;
@@ -34,7 +32,6 @@
 @property (assign) IBOutlet EFLaceView* laceView;;
 
 @property (assign) IBOutlet NSView* viewLoadRef;
-@property (assign) IBOutlet MyDocument* document;
 
 -(void)addNewObject:(id)sender;
 

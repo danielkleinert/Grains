@@ -11,7 +11,7 @@
 
 @implementation MyWindowController
 
-@synthesize objectsController, addObjectsController, mainSplitView, tabView, grainView, laceView, viewLoadRef, document;
+@synthesize objectsController, addObjectsController, mainSplitView, tabView, grainView, laceView, viewLoadRef;
 
 
 - (void)windowDidLoad {
@@ -47,6 +47,7 @@
 	[laceView unbind:@"selectionIndexes"];
 }
 
+
 -(void)addNewObject:(id)sender{
 	NSString *entetyClass = [[addObjectsController selection] valueForKey:@"class"];
 	Reseiver *newObject = [NSEntityDescription insertNewObjectForEntityForName:entetyClass inManagedObjectContext:[[self document] managedObjectContext]];
@@ -54,13 +55,14 @@
     NSManagedObject *newPanel = [NSEntityDescription insertNewObjectForEntityForName:@"Panel" inManagedObjectContext:[[self document] managedObjectContext]];
 	[newPanel setValue:entetyClass forKey:@"title"];
     [newPanel setValue:newObject forKey:@"relatedObject"];
+	[newPanel setValue:[NSColor grayColor] forKey:@"titleColor"];
     
 	NSUInteger index = 0;
     for (NSString* attribute in [newObject orderdInputs]){
         NSManagedObject* inputHole = [NSEntityDescription insertNewObjectForEntityForName:@"InputHole" inManagedObjectContext:[[self document] managedObjectContext]];
         [inputHole setValue:attribute forKey:@"label"];
 		[inputHole setValue:attribute forKey:@"keyPath"];
-		[inputHole setValue:[NSNumber numberWithUnsignedInt:index] forKey:@"position"];
+		[inputHole setValue:[NSNumber numberWithUnsignedInteger:index] forKey:@"position"];
         [inputHole setValue:newPanel forKey:@"data"];
 		index++;
 	}
@@ -100,23 +102,23 @@
 	switch ([sender selectedSegment]) {
 		case 0: // Play/Stop
 			if ([sender isSelectedForSegment:[sender selectedSegment]]){
-				[document playAudio];
+				[[self document] playAudio];
 			} else {
-				[document pauseAudio];
+				[[self document] pauseAudio];
 			}
 			break;
 		case 1: // Record
 			if ([sender isSelectedForSegment:[sender selectedSegment]]){
-				[document startRecording];
+				[[self document] startRecording];
 			} else {
-				[document stopRecording];
+				[[self document] stopRecording];
 			}
 			break;
 	}
 }
 
 - (IBAction)setVolume:(id)sender{
-	[document setVolume:[(NSSlider*)sender floatValue]];
+	[(MyDocument*)[self document] setVolume:[(NSSlider*)sender floatValue]];
 }
 
 #pragma mark -

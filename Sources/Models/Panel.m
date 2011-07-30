@@ -18,8 +18,7 @@
 
 @dynamic width;
 @dynamic verticalOffset;
-@dynamic colorAsData;
-//@dynamic titleColor;
+@dynamic titleColor;
 @dynamic title;
 @dynamic tag;
 @dynamic originY;
@@ -38,35 +37,5 @@
     }
     return keys;
 }
-
-
-- (NSColor *)titleColor
-{
-    [self willAccessValueForKey:@"titleColor"];
-    NSColor *color = [self primitiveValueForKey:@"titleColor"];
-    [self didAccessValueForKey:@"titleColor"];
-    if (color == nil) {
-        NSData *colorData = [self valueForKey:@"colorAsData"];
-		if (colorData == nil) {
-			[self setValue:[NSKeyedArchiver archivedDataWithRootObject:[NSColor grayColor]]
-					forKey:@"colorAsData"];
-				colorData = [self valueForKey:@"colorAsData"];
-		}
-        if (colorData != nil) {
-            color = [NSKeyedUnarchiver unarchiveObjectWithData:colorData];
-            [self setPrimitiveValue:color forKey:@"titleColor"];
-        }
-    }
-    return color;
-} 
-
-- (void)setTitleColor:(NSColor *)aColor
-{
-    [self willChangeValueForKey:@"titleColor"];
-    [self setPrimitiveValue:aColor forKey:@"titleColor"];
-    [self didChangeValueForKey:@"titleColor"];
-    [self setValue:[NSKeyedArchiver archivedDataWithRootObject:aColor]
-			forKey:@"colorAsData"];
-} 
 
 @end

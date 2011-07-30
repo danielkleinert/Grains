@@ -59,6 +59,9 @@
 	[self addObserver:self forKeyPath:@"waveForm" options:nil context:(void*)@"waveForm"];
 }
 
+- (void)dealloc{
+	[self removeObserver:self forKeyPath:@"waveForm"];
+}
 
 
 - (BOOL)validateValue:(id *)ioValue forKey:(NSString *)key error:(NSError **)outError{
@@ -110,7 +113,7 @@
 }
 
 - (NSArray*)orderdInputs{
-	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackRate", @"playbackRateVelocity", @"playbackRateAcceleration", @"gain", @"gainRateVelocity", @"gainAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"envAttack", @"envSustain", @"envRelease", nil];
+	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackRate", @"playbackRateVelocity", @"playbackRateAcceleration", @"gain", @"gainVelocity", @"gainAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"envAttack", @"envSustain", @"envRelease", nil];
 }
 
 @end
