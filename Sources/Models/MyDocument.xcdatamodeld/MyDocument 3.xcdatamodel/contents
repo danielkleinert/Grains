@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="untitled.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11A511" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Cloud" representedClassName="Cloud" parentEntity="Reseiver">
+        <attribute name="audioFileOffset" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="audioFileUrl" optional="YES" attributeType="Transformable"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="50"/>
+        <attribute name="envAttack" attributeType="Integer 32" defaultValueString="5"/>
+        <attribute name="envAttackForm" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="envRelease" attributeType="Integer 32" defaultValueString="20"/>
+        <attribute name="envReleaseForm" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="envSustain" attributeType="Integer 32" defaultValueString="10"/>
+        <attribute name="gain" optional="YES" attributeType="Float" defaultValueString="1"/>
+        <attribute name="gainAcceleration" attributeType="Float" defaultValueString="0"/>
+        <attribute name="gainVelocity" attributeType="Float" defaultValueString="0"/>
+        <attribute name="intervall" optional="YES" attributeType="Integer 32" defaultValueString="2000"/>
+        <attribute name="pan" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="panAcceleration" attributeType="Float" defaultValueString="0"/>
+        <attribute name="panVelocity" attributeType="Float" defaultValueString="0"/>
+        <attribute name="playbackRate" optional="YES" attributeType="Float" defaultValueString="1"/>
+        <attribute name="playbackRateAcceleration" attributeType="Float" defaultValueString="0"/>
+        <attribute name="playbackRateVelocity" attributeType="Float" defaultValueString="0"/>
+        <attribute name="waveForm" attributeType="Integer 32" minValueString="0" defaultValueString="0"/>
+    </entity>
+    <entity name="Connection" representedClassName="Connection">
+        <attribute name="keyPath" attributeType="String"/>
+        <relationship name="reseiver" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Reseiver" inverseName="senderConnections" inverseEntity="Reseiver" indexed="YES"/>
+        <relationship name="sender" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Effect" inverseName="reseiverConections" inverseEntity="Effect" indexed="YES"/>
+    </entity>
+    <entity name="Effect" representedClassName="Effect" isAbstract="YES" parentEntity="Reseiver">
+        <relationship name="reseiverConections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Connection" inverseName="sender" inverseEntity="Connection" indexed="YES"/>
+    </entity>
+    <entity name="FixedValue" representedClassName="FixedValue" parentEntity="Effect">
+        <attribute name="sliderMax" optional="YES" attributeType="Float" defaultValueString="100"/>
+        <attribute name="sliderMin" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="value" optional="YES" attributeType="Float" defaultValueString="0"/>
+    </entity>
+    <entity name="GausianRandom" representedClassName="GausianRandom" parentEntity="Effect">
+        <attribute name="clip" optional="YES" attributeType="Boolean" defaultValueString="NO"/>
+        <attribute name="deviation" optional="YES" attributeType="Float" defaultValueString="5"/>
+        <attribute name="max" optional="YES" attributeType="Float" defaultValueString="100"/>
+        <attribute name="mean" optional="YES" attributeType="Float" defaultValueString="50"/>
+        <attribute name="min" optional="YES" attributeType="Float" defaultValueString="0.0"/>
+    </entity>
+    <entity name="InputHole" representedClassName="NSManagedObject">
+        <attribute name="keyPath" optional="YES" attributeType="String"/>
+        <attribute name="label" attributeType="String" defaultValueString="input label"/>
+        <attribute name="position" attributeType="Integer 16" defaultValueString="1"/>
+        <relationship name="data" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Panel" inverseName="inputs" inverseEntity="Panel" indexed="YES"/>
+        <relationship name="laces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OutputHole" inverseName="laces" inverseEntity="OutputHole" indexed="YES"/>
+    </entity>
+    <entity name="Interpolate" representedClassName="Interpolate" parentEntity="Effect">
+        <attribute name="duration" optional="YES" attributeType="Float" defaultValueString="1000"/>
+        <attribute name="from" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="to" optional="YES" attributeType="Float" defaultValueString="100"/>
+    </entity>
+    <entity name="JavaScript" representedClassName="JavaScript" parentEntity="Effect">
+        <attribute name="hasError" optional="YES" attributeType="Boolean" defaultValueString="NO"/>
+        <attribute name="input1" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input2" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input3" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input4" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="script" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="OSCReceive" representedClassName="OSCReceive" parentEntity="Effect">
+        <attribute name="address" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="OutputHole" representedClassName="NSManagedObject">
+        <attribute name="keyPath" optional="YES" attributeType="String"/>
+        <attribute name="label" attributeType="String" defaultValueString="output  label"/>
+        <attribute name="position" attributeType="Integer 16" defaultValueString="1"/>
+        <relationship name="data" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Panel" inverseName="outputs" inverseEntity="Panel" indexed="YES"/>
+        <relationship name="laces" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InputHole" inverseName="laces" inverseEntity="InputHole" indexed="YES"/>
+    </entity>
+    <entity name="Panel" representedClassName="Panel">
+        <attribute name="height" attributeType="Float" defaultValueString="0"/>
+        <attribute name="originX" attributeType="Float" defaultValueString="20"/>
+        <attribute name="originY" attributeType="Float" defaultValueString="20"/>
+        <attribute name="tag" attributeType="Integer 16" defaultValueString="1"/>
+        <attribute name="title" attributeType="String" defaultValueString="new object"/>
+        <attribute name="titleColor" optional="YES" attributeType="Transformable"/>
+        <attribute name="verticalOffset" attributeType="Float" defaultValueString="10"/>
+        <attribute name="width" attributeType="Float" defaultValueString="0"/>
+        <relationship name="inputs" toMany="YES" deletionRule="Cascade" destinationEntity="InputHole" inverseName="data" inverseEntity="InputHole" indexed="YES"/>
+        <relationship name="outputs" toMany="YES" deletionRule="Cascade" destinationEntity="OutputHole" inverseName="data" inverseEntity="OutputHole" indexed="YES"/>
+        <relationship name="relatedObject" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Reseiver" inverseName="panel" inverseEntity="Reseiver" indexed="YES"/>
+    </entity>
+    <entity name="Queue" representedClassName="Queue" parentEntity="Effect">
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="values" optional="YES" attributeType="Transformable"/>
+    </entity>
+    <entity name="Random" representedClassName="Random" parentEntity="Effect">
+        <attribute name="max" attributeType="Float" defaultValueString="100"/>
+        <attribute name="min" attributeType="Float" defaultValueString="0"/>
+    </entity>
+    <entity name="Reseiver" representedClassName="Reseiver" isAbstract="YES">
+        <relationship name="panel" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="Panel" inverseName="relatedObject" inverseEntity="Panel" indexed="YES"/>
+        <relationship name="senderConnections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Connection" inverseName="reseiver" inverseEntity="Connection" indexed="YES"/>
+    </entity>
+    <elements>
+        <element name="Queue" positionX="108" positionY="111" width="128" height="75"/>
+        <element name="Connection" positionX="-189" positionY="-81" width="128" height="90"/>
+        <element name="Panel" positionX="-38" positionY="-477" width="128" height="210"/>
+        <element name="OSCReceive" positionX="-126" positionY="207" width="128" height="60"/>
+        <element name="FixedValue" positionX="-198" positionY="90" width="128" height="90"/>
+        <element name="Interpolate" positionX="160" positionY="216" width="128" height="90"/>
+        <element name="Cloud" positionX="288" positionY="-132" width="128" height="330"/>
+        <element name="InputHole" positionX="-200" positionY="-342" width="128" height="120"/>
+        <element name="Effect" positionX="52" positionY="9" width="128" height="60"/>
+        <element name="Random" positionX="-54" positionY="90" width="128" height="75"/>
+        <element name="JavaScript" positionX="18" positionY="216" width="128" height="135"/>
+        <element name="OutputHole" positionX="162" positionY="-342" width="128" height="120"/>
+        <element name="Reseiver" positionX="124" positionY="-159" width="128" height="75"/>
+        <element name="GausianRandom" positionX="-137" positionY="288" width="128" height="120"/>
+    </elements>
+</model>
