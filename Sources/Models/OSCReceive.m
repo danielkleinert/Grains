@@ -11,12 +11,14 @@
 @implementation OSCReceive
 @dynamic address;
 @synthesize manager;
+@synthesize listenForNextAdress;
 
 
 - (void)awake {
 	[super awake];
 	self.manager = [GrainsOSCManager manager];
 	[self addObserver:self forKeyPath:@"address" options:NSKeyValueObservingOptionPrior context:@"address"];
+	[self addObserver:self forKeyPath:@"listenForNextAdress" options:0 context:@"listenForNextAdress"];
 	[self startObservingOSCManager];
 	
 }
@@ -47,6 +49,13 @@
 		} else {
 			[self startObservingOSCManager];
 		}
+	} else if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"listenForNextAdress"])	{
+		if (listenForNextAdress) {
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resivedOSCMeassage:) name:nil object:[GrainsOSCManager manager]];
+		} else {
+			[[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:[GrainsOSCManager manager]];
+			[self startObservingOSCManager];
+		}
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 	}
@@ -55,6 +64,10 @@
 - (void)resivedOSCMeassage:(NSNotification *)notification{
 	OSCMessage *message = [notification.userInfo objectForKey:@"message"];
 	OSCValue *value = message.value;
+	if (listenForNextAdress && (value.type == OSCValInt || value.type == OSCValFloat)) {
+		self.listenForNextAdress = NO;
+		self.address = message.address;
+	}
 	if (value.type == OSCValInt) {
 		self.output = [NSNumber numberWithInt:[value intValue]];
 	} else if(value.type == OSCValFloat) {

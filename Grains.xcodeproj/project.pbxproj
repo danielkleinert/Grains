@@ -356,8 +356,8 @@
 			isa = PBXGroup;
 			children = (
 				BBCF2CFE13D994BB009D51DA /* Audio */,
-				BBCF2C9513D98D70009D51DA /* Controller */,
 				BBCF2C7613D988D9009D51DA /* Models */,
+				BBCF2C9513D98D70009D51DA /* Controller */,
 				BBCF2C9413D98CF6009D51DA /* Views */,
 				BBCF2CA213D99060009D51DA /* Grains-Info.plist */,
 				BBCF2CA313D99060009D51DA /* Grains-Prefix.pch */,

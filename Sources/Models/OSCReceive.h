@@ -14,10 +14,12 @@
 
 @interface OSCReceive : Effect {
 	GrainsOSCManager *manager;
+	BOOL listenForNextAdress;
 @private
 }
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, retain) GrainsOSCManager *manager;
+@property (nonatomic) BOOL listenForNextAdress;
 
 -(void)startObservingOSCManager;
 -(void)stopObservingOSCManager;

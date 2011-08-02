@@ -11,11 +11,15 @@
 
 @interface GrainsOSCManager : NSObject{
 	OSCManager *manager;
-	OSCInPort *inPort; 
+	OSCInPort *inPort;
+	NSString* myIPAddress;
 }
 
 +(GrainsOSCManager *)manager;
 @property (nonatomic, retain) OSCInPort *inPort;
+@property (nonatomic, retain) NSString* myIPAddress;
+
+- (void)calculateMyIPAddress;
 
 
 @end
