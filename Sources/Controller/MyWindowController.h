@@ -17,9 +17,12 @@
 	NSSplitView __unsafe_unretained *mainSplitView;
 	NSTabView __unsafe_unretained *tabView;
 	EFLaceView __unsafe_unretained *laceView;
+	NSSegmentedControl __unsafe_unretained *viewsToggle;
 	GrainView __unsafe_unretained *grainView;
 	
 	NSView __unsafe_unretained *viewLoadRef;
+	
+	CGFloat uncollapsedSplitViewWidth;
 
 }
 
@@ -30,6 +33,7 @@
 @property (assign) IBOutlet NSTabView* tabView;;
 @property (assign) IBOutlet GrainView* grainView;
 @property (assign) IBOutlet EFLaceView* laceView;;
+@property (assign) IBOutlet NSSegmentedControl *viewsToggle;
 
 @property (assign) IBOutlet NSView* viewLoadRef;
 

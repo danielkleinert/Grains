@@ -11,7 +11,7 @@
 
 @implementation MyWindowController
 
-@synthesize objectsController, addObjectsController, mainSplitView, tabView, grainView, laceView, viewLoadRef;
+@synthesize objectsController, addObjectsController, mainSplitView, tabView, grainView, laceView, viewsToggle, viewLoadRef;
 
 
 - (void)windowDidLoad {
@@ -89,10 +89,13 @@
 			[laceView setHidden:![laceView isHidden]];
 			break;
 		case 2: // Attributes
-			[mainSplitView
-			 setPosition:[mainSplitView maxPossiblePositionOfDividerAtIndex:0]
-			 ofDividerAtIndex:0
-			 ];
+			CGFloat width;
+			if ([sender isSelectedForSegment:[sender selectedSegment]]){
+				width = uncollapsedSplitViewWidth;
+			} else {
+				width = [mainSplitView maxPossiblePositionOfDividerAtIndex:0];
+			}
+			[mainSplitView setPosition:width ofDividerAtIndex:0];
 			break;
 	}
 }
@@ -150,6 +153,20 @@
 
 - (CGFloat)splitView:(NSSplitView *)splitView constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)dividerIndex{
 	return (splitView == mainSplitView) ? 300 : 200;	
+}
+
+- (void)splitViewDidResizeSubviews:(NSNotification *)aNotification{
+	if (aNotification.object == mainSplitView) {
+		CGFloat width = [[[mainSplitView subviews] objectAtIndex:0] frame].size.width;
+		if (width != [mainSplitView maxPossiblePositionOfDividerAtIndex:0]) {
+			// if splitView was not collapsed save width for later uncollapsing
+			uncollapsedSplitViewWidth = width;
+			[viewsToggle setSelected:YES forSegment:2];
+		} else {
+			// if splitView was collapsed switch toggle state
+			[viewsToggle setSelected:NO forSegment:2]; 
+		}
+	}	
 }
 
 @end
