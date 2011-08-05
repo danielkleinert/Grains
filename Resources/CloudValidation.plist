@@ -12,7 +12,7 @@
 	<key>duration</key>
 	<dict>
 		<key>max</key>
-		<integer>2000</integer>
+		<integer>200</integer>
 		<key>min</key>
 		<integer>5</integer>
 	</dict>

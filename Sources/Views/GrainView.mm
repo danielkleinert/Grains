@@ -63,25 +63,28 @@ inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x)
 	float propertyMax = [[[cloud.validation objectForKey:key] objectForKey:@"max"] floatValue];
 	
 	float initialValue = [[cloud valueForKeyPath:key] floatValue];
+	float velocity, acceleration;
 	id velocityObject = [cloud valueForKeyPath:[key stringByAppendingString:@"Velocity"]];
 	if (velocityObject != NSNotApplicableMarker) {
-		float velocity = [velocityObject floatValue];
-		float acceleration = [[cloud valueForKeyPath:[key stringByAppendingString:@"Acceleration"]] floatValue];
-		float duration = [cloud.duration floatValue] / 1000;
-		float t = 0;
-		while (t < duration) {
-			float value = (acceleration / 2) * (float)pow(t,2) + (velocity * t) + initialValue;
-			value = clamp(value, propertyMin, propertyMax);
-			if ([key isEqualToString: @"playbackRate"]) {
-				value = logf(value)/logf(powf(propertyMax, 2.0/propertyMax))+propertyMax/2;
-			}
-			value = (value-propertyMin)/(propertyMax-propertyMin) * normelisation;
-			[returnValues addObject:[NSNumber numberWithFloat:value]];
-			t += 1./60.;
-		}
-		return returnValues;
+		velocity = [velocityObject floatValue];
+		acceleration = [[cloud valueForKeyPath:[key stringByAppendingString:@"Acceleration"]] floatValue];
+	} else {
+		velocity = acceleration = 0;
 	}
-	return [NSArray arrayWithObject:[NSNumber numberWithFloat:initialValue]];
+	float duration = [cloud.duration floatValue] / 1000;
+	float t = 0;
+	while (t < duration) {
+		float value = (acceleration / 2) * (float)pow(t,2) + (velocity * t) + initialValue;
+		value = clamp(value, propertyMin, propertyMax);
+		if ([key isEqualToString: @"playbackRate"]) {
+			value = logf(value)/logf(powf(propertyMax, 2.0/propertyMax))+propertyMax/2;
+		}
+		value = (value-propertyMin)/(propertyMax-propertyMin) * normelisation;
+		[returnValues addObject:[NSNumber numberWithFloat:value]];
+		t += 1./60.;
+	}
+	return returnValues;
+
 }
 
 - (void)addGrainFromCloud:(Cloud*)cloud in:(NSNumber*)timeOffset{
