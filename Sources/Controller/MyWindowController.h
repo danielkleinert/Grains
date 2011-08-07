@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <EFLaceViewLib/EFLaceview.h>
 #import "GrainView.h"
+#import	"Connection.h"
 
 @interface MyWindowController : NSWindowController {
 	NSArrayController __unsafe_unretained *objectsController;
@@ -37,6 +38,8 @@
 
 @property (assign) IBOutlet NSView* viewLoadRef;
 
--(void)addNewObject:(id)sender;
+- (void)addNewObject:(id)sender;
+- (void)delete:sender; 
+- (void)addLaceForConnection:(Connection*)connection;
 
 @end

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */; };
+		BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */; };
+		BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB69B4E213EC542100BC8D7F /* GausianRandom.xib */; };
 		BBBF613913DDB40B002FF327 /* Audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0813D9958E009D51DA /* Audio.mm */; };
 		BBBF613B13DDB40F002FF327 /* Grain.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0A13D9958E009D51DA /* Grain.mm */; };
 		BBBF613C13DDB7FA002FF327 /* CAAudioBufferList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0F13D995B5009D51DA /* CAAudioBufferList.cpp */; };
@@ -116,6 +118,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BB69B4DE13EC540C00BC8D7F /* GausianRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GausianRandom.h; sourceTree = "<group>"; };
+		BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GausianRandom.m; sourceTree = "<group>"; };
+		BB69B4E213EC542100BC8D7F /* GausianRandom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GausianRandom.xib; sourceTree = "<group>"; };
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		BBBF616513DDBB25002FF327 /* VVOSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVOSC.framework; sourceTree = "<group>"; };
 		BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -389,6 +394,8 @@
 				BBCF2CEF13D99477009D51DA /* Queue.m */,
 				BBCF2CF013D99477009D51DA /* Random.h */,
 				BBCF2CF113D99477009D51DA /* Random.m */,
+				BB69B4DE13EC540C00BC8D7F /* GausianRandom.h */,
+				BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */,
 				BBCF2CF213D99477009D51DA /* Reseiver.h */,
 				BBCF2CF313D99477009D51DA /* Reseiver.m */,
 				BBCF2CC913D993E0009D51DA /* Panel.h */,
@@ -436,13 +443,14 @@
 			isa = PBXGroup;
 			children = (
 				BBCF2CD313D99418009D51DA /* MyDocument.xib */,
+				BBCF2CD213D99418009D51DA /* MainMenu.xib */,
 				BBCF2CCF13D99418009D51DA /* Cloud.xib */,
 				BBCF2CD013D99418009D51DA /* FixedValue.xib */,
 				BBCF2CD113D99418009D51DA /* JavaScript.xib */,
-				BBCF2CD213D99418009D51DA /* MainMenu.xib */,
 				BBCF2CD413D99418009D51DA /* OSCReceive.xib */,
 				BBCF2CD513D99418009D51DA /* Queue.xib */,
 				BBCF2CD613D99418009D51DA /* Random.xib */,
+				BB69B4E213EC542100BC8D7F /* GausianRandom.xib */,
 				BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */,
 				BBCF2CC613D993D6009D51DA /* NewObjectView.h */,
 				BBCF2CC713D993D6009D51DA /* NewObjectView.m */,
@@ -649,6 +657,7 @@
 				BBCF2CDE13D99418009D51DA /* Random.xib in Resources */,
 				BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */,
 				BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */,
+				BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +725,7 @@
 				BBBF613B13DDB40F002FF327 /* Grain.mm in Sources */,
 				BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */,
 				BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */,
+				BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

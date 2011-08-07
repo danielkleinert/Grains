@@ -23,5 +23,6 @@
 
 
 + (NSArray *)keysForNonBoundsProperties;
++ (id)newPanelForResiver:(Reseiver *)reseiver inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

@@ -12,6 +12,9 @@
 #import "Cloud.h"
 #import "Reseiver.h"
 #import "Panel.h"
+#import "Connection.h"
+
+NSString *GrainsPBoardType = @"GrainsPBoardType";
 
 @implementation MyDocument
 
@@ -66,6 +69,31 @@
 	[audio stop];
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+	// update clouds
+	Reseiver* reseiver;
+	switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
+		case NSKeyValueChangeInsertion:{
+			for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
+				if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] addObject:reseiver];
+			}
+			break;
+		}
+		case NSKeyValueChangeRemoval:{
+			for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
+				if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] removeObject:reseiver];
+			}
+			break;
+		}
+		default:
+			break;
+	}
+}
+	
+
+
+#pragma mark -
+#pragma mark Audio
 
 - (void)startRecording{
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -104,70 +132,88 @@
 	[audio setVolume:volume];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if ([keyPath isEqualToString:@"objects"]) {
-		// update clouds
-		Reseiver* reseiver;
-		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
-			case NSKeyValueChangeInsertion:{
-				for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
-					if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] addObject:reseiver];
-					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
-						[inputHole addObserver:self forKeyPath:@"laces" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-					}
-				}
-				break;
-			}
-			case NSKeyValueChangeRemoval:{
-				for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
-					if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] removeObject:reseiver];
-					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
-						[inputHole removeObserver:self forKeyPath:@"laces"];
-					}
-				}
-				break;
-			}
-			default:
-				break;
-		}
-	} else {
-		// update conections
-		NSManagedObject* inputHole = object;
-		NSManagedObject* outputHole;
-		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
-			case NSKeyValueChangeInsertion:{
-				for (outputHole in [change valueForKey:NSKeyValueChangeNewKey]) {
-					NSManagedObject* connection = [NSEntityDescription insertNewObjectForEntityForName:@"Connection" inManagedObjectContext:self.managedObjectContext];
-					[connection setValue:[inputHole valueForKeyPath:@"data.relatedObject"]  forKey:@"reseiver"];
-					[connection setValue:[outputHole valueForKeyPath:@"data.relatedObject"] forKey:@"sender"];
-					[connection setValue:[inputHole valueForKey:@"keyPath"] forKey:@"keyPath"];
-				}
-				break;
-			}
-			case NSKeyValueChangeRemoval:{
-				for (outputHole in [change valueForKey:NSKeyValueChangeOldKey]) {
-					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-					NSEntityDescription *entity = [NSEntityDescription entityForName:@"Connection" inManagedObjectContext:self.managedObjectContext];
-					[fetchRequest setEntity:entity];
-					
-					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reseiver = %@ and sender = %@ and keyPath = %@", [inputHole valueForKeyPath:@"data.relatedObject"], [outputHole valueForKeyPath:@"data.relatedObject"], [inputHole valueForKey:@"keyPath"]];
-					[fetchRequest setPredicate:predicate];
-					
-					NSError *error = nil;
-					NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-					if (fetchedObjects == nil) {
-						NSLog(@"Fetch connection failed");
-					}
-					
-					[self.managedObjectContext deleteObject:[fetchedObjects objectAtIndex:0]];
-				}
-				break;
-			}
-			default:
-				break;
-		}
+#pragma mark -
+#pragma mark Copy / Paste / Cut / Delete
+
+- (void)copy:sender {
+    NSArray *selectedObjects = [[windowController objectsController] selectedObjects];
+    NSUInteger count = [selectedObjects count];
+    if (count == 0) {
+        return;
+    }
+	
+    NSMutableArray *copyObjectsArray = [NSMutableArray arrayWithCapacity:count];
+	
+    for (Reseiver *reseiver in selectedObjects) {
+		NSMutableDictionary *addToCopyObjectsArray = [[NSMutableDictionary alloc] init];
+		NSDictionary *objectAttributes = [reseiver dictionaryWithValuesForKeys:reseiver.entity.attributesByName.allKeys];
+		NSDictionary *panelAttributes = [reseiver.panel dictionaryWithValuesForKeys:reseiver.panel.entity.attributesByName.allKeys];
+		[addToCopyObjectsArray setObject:objectAttributes forKey:@"objectAttributes"];
+		[addToCopyObjectsArray setObject:panelAttributes forKey:@"panelAttributes"];
+		[addToCopyObjectsArray setObject:reseiver.entity.name forKey:@"entityName"];
+		[addToCopyObjectsArray setObject:[[reseiver objectID] URIRepresentation] forKey:@"ID"];
+		[copyObjectsArray addObject:addToCopyObjectsArray];
+    }
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:[NSEntityDescription entityForName:@"Connection" inManagedObjectContext:[self managedObjectContext]]];
+	[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"sender IN %@ and reseiver in %@", selectedObjects, selectedObjects]];
+	NSArray *connections = [[self managedObjectContext] executeFetchRequest:fetchRequest error:nil];
+
+	for (Connection *connection in connections) {
+		NSMutableDictionary *addToCopyObjectsArray = [[NSMutableDictionary alloc] init];
+		NSDictionary *connectionAttributes = [connection dictionaryWithValuesForKeys:connection.entity.attributesByName.allKeys];
+		[addToCopyObjectsArray setObject:connectionAttributes forKey:@"objectAttributes"];
+		[addToCopyObjectsArray setObject:connection.entity.name forKey:@"entityName"];
+		[addToCopyObjectsArray setObject:[[connection.sender objectID] URIRepresentation] forKey:@"sender"];
+		[addToCopyObjectsArray setObject:[[connection.reseiver objectID] URIRepresentation] forKey:@"reseiver"];
+        [copyObjectsArray addObject:addToCopyObjectsArray];
 	}
+	
+    NSPasteboard *generalPasteboard = [NSPasteboard generalPasteboard];
+    [generalPasteboard declareTypes: [NSArray arrayWithObjects:GrainsPBoardType, nil] owner:self];
+    NSData *copyData = [NSKeyedArchiver archivedDataWithRootObject:copyObjectsArray];
+    [generalPasteboard setData:copyData forType:GrainsPBoardType];
 }
+
+- (void)paste:sender {
+    NSPasteboard *generalPasteboard = [NSPasteboard generalPasteboard];
+    NSData *data = [generalPasteboard dataForType:GrainsPBoardType];
+    if (data == nil) {
+        return;
+    }
+	
+    NSManagedObjectContext *moc = [self managedObjectContext];
+    NSArray *objectsArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	NSMutableArray *selectedObjects = [[NSMutableArray alloc] init];
+	NSMutableDictionary *newReseiverForOldID = [[NSMutableDictionary alloc] init];
+	
+    for (NSDictionary *objectDict in objectsArray) {
+        NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:[objectDict valueForKey:@"entityName"] inManagedObjectContext:moc];
+        [object setValuesForKeysWithDictionary:[objectDict valueForKey:@"objectAttributes"]];
+		if ([[objectDict valueForKey:@"entityName"] isEqualToString:@"Connection"]) {
+			[object setValue:[newReseiverForOldID objectForKey:[objectDict valueForKey:@"sender"]] forKey:@"sender"];
+			[object setValue:[newReseiverForOldID objectForKey:[objectDict valueForKey:@"reseiver"]] forKey:@"reseiver"];
+			// tight coupling :/
+			[windowController addLaceForConnection:(Connection *)object];
+		} else {
+			Panel *panel = [Panel newPanelForResiver:(Reseiver*)object inManagedObjectContext:[self managedObjectContext]];
+			[panel setValuesForKeysWithDictionary:[objectDict valueForKey:@"panelAttributes"]];
+			[newReseiverForOldID setObject:object forKey:[objectDict valueForKey:@"ID"]];
+			[[self mutableArrayValueForKey:@"objects"] addObject:object];
+			[selectedObjects addObject:object];
+		}
+    }
+	[[windowController objectsController] setSelectedObjects:selectedObjects];
+}
+
+- (void)cut:sender {
+    [self copy:sender];
+	[windowController delete:sender];
+}
+
+#pragma mark -
+#pragma mark Error handling
 
 - (NSError *)willPresentError:(NSError *)inError {
 	NSLog(@"Failed to save to data store: %@", [inError localizedDescription]);

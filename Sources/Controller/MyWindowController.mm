@@ -8,6 +8,7 @@
 
 #import "MyWindowController.h"
 #import "MyDocument.h"
+#import "Panel.h"
 
 @implementation MyWindowController
 
@@ -29,6 +30,9 @@
     [laceView bind:@"dataObjects" toObject:objectsController withKeyPath:@"arrangedObjects.panel" options:nil];
 	[laceView bind:@"selectionIndexes" toObject:objectsController withKeyPath:@"selectionIndexes" options:nil];
 	
+	// keep laces and connections in sync
+	[self.document addObserver:self forKeyPath:@"objects" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+	
 	// Load Controll Panels
 	for (NSString* panelName in effects){
 		if (![NSBundle loadNibNamed:panelName owner:self]) {
@@ -45,6 +49,7 @@
 - (void)dealloc {
 	[laceView unbind:@"dataObjects"];
 	[laceView unbind:@"selectionIndexes"];
+	[self.document removeObserver:self];
 }
 
 
@@ -52,28 +57,14 @@
 	NSString *entetyClass = [[addObjectsController selection] valueForKey:@"class"];
 	Reseiver *newObject = [NSEntityDescription insertNewObjectForEntityForName:entetyClass inManagedObjectContext:[[self document] managedObjectContext]];
 	
-    NSManagedObject *newPanel = [NSEntityDescription insertNewObjectForEntityForName:@"Panel" inManagedObjectContext:[[self document] managedObjectContext]];
-	[newPanel setValue:entetyClass forKey:@"title"];
-    [newPanel setValue:newObject forKey:@"relatedObject"];
-	[newPanel setValue:[NSColor grayColor] forKey:@"titleColor"];
-    
-	NSUInteger index = 0;
-    for (NSString* attribute in [newObject orderdInputs]){
-        NSManagedObject* inputHole = [NSEntityDescription insertNewObjectForEntityForName:@"InputHole" inManagedObjectContext:[[self document] managedObjectContext]];
-        [inputHole setValue:attribute forKey:@"label"];
-		[inputHole setValue:attribute forKey:@"keyPath"];
-		[inputHole setValue:[NSNumber numberWithUnsignedInteger:index] forKey:@"position"];
-        [inputHole setValue:newPanel forKey:@"data"];
-		index++;
-	}
-    if (entetyClass != @"Cloud"){
-        NSManagedObject *outputHole = [NSEntityDescription insertNewObjectForEntityForName:@"OutputHole" inManagedObjectContext:[[self document] managedObjectContext]];
-        [outputHole setValue:@"out" forKey:@"label"];
-        [outputHole setValue:newPanel forKey:@"data"];
-    }
+	Panel *panel = [Panel newPanelForResiver:newObject inManagedObjectContext:[[self document] managedObjectContext]];
     
 	[[[self document] mutableArrayValueForKey:@"objects"] addObject:newObject];
 	[objectsController setSelectedObjects:[NSArray arrayWithObject: newObject]];
+}
+
+- (void)delete:sender {
+	[objectsController remove:sender];
 }
 
 #pragma mark -
@@ -167,6 +158,88 @@
 			[viewsToggle setSelected:NO forSegment:2]; 
 		}
 	}	
+}
+
+#pragma mark -
+#pragma mark *** Lace management ***
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+	if ([keyPath isEqualToString:@"objects"]) {
+		Reseiver* reseiver;
+		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
+			case NSKeyValueChangeInsertion:{
+				for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
+					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
+						[inputHole addObserver:self forKeyPath:@"laces" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+					}
+				}
+				break;
+			}
+			case NSKeyValueChangeRemoval:{
+				for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
+					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
+						[inputHole removeObserver:self forKeyPath:@"laces"];
+					}
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	} else {
+		// update conections
+		NSManagedObjectContext* context = [self.document managedObjectContext];
+		NSManagedObject* inputHole = object;
+		NSManagedObject* outputHole;
+		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
+			case NSKeyValueChangeInsertion:{
+				for (outputHole in [change valueForKey:NSKeyValueChangeNewKey]) {
+					Reseiver* sender = [outputHole valueForKeyPath:@"data.relatedObject"];
+					Reseiver* reseiver = [inputHole valueForKeyPath:@"data.relatedObject"];
+					NSString* keyPath = [inputHole valueForKey:@"keyPath"];
+					
+					// don't insert the same connection twice (paste -> addLace -> here)
+					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+					[fetchRequest setEntity:[NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context]];
+					[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"sender = %@ and reseiver = %@ and keyPath = %@", sender, reseiver, keyPath]];
+					if ([[context executeFetchRequest:fetchRequest error:nil] count] == 0) {
+						NSManagedObject* connection = [NSEntityDescription insertNewObjectForEntityForName:@"Connection" inManagedObjectContext:context];
+						[connection setValue:reseiver  forKey:@"reseiver"];
+						[connection setValue:sender forKey:@"sender"];
+						[connection setValue:keyPath forKey:@"keyPath"];
+					}
+				}
+				break;
+			}
+			case NSKeyValueChangeRemoval:{
+				for (outputHole in [change valueForKey:NSKeyValueChangeOldKey]) {
+					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+					NSEntityDescription *entity = [NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context];
+					[fetchRequest setEntity:entity];
+					
+					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reseiver = %@ and sender = %@ and keyPath = %@", [inputHole valueForKeyPath:@"data.relatedObject"], [outputHole valueForKeyPath:@"data.relatedObject"], [inputHole valueForKey:@"keyPath"]];
+					[fetchRequest setPredicate:predicate];
+					
+					NSError *error = nil;
+					NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+					if (fetchedObjects == nil) {
+						NSLog(@"Fetch connection failed");
+					}
+					
+					[context deleteObject:[fetchedObjects objectAtIndex:0]];
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	}
+}
+
+- (void)addLaceForConnection:(Connection*)connection{
+	NSManagedObject *sendHole = [connection.sender.panel.outputs anyObject];
+	NSManagedObject *reseiveHole = [[connection.reseiver.panel.inputs filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"keyPath = %@", connection.keyPath]] anyObject];
+	[laceView connectHole:sendHole toHole:reseiveHole];
 }
 
 @end
