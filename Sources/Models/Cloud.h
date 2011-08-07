@@ -49,7 +49,7 @@ typedef enum {
 @property (nonatomic, retain) NSNumber * envAttackForm;
 @property (nonatomic, retain) NSNumber * envSustain;
 
-@property(readonly) NSDictionary *validation;
+@property(retain, readonly) NSDictionary *validation;
 
 @end
 

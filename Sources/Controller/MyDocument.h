@@ -17,8 +17,8 @@
 	NSMutableArray *clouds;
 }
 
-@property (readonly) NSMutableArray* clouds;
-@property (readonly) MyWindowController *windowController;
+@property (retain, readonly) NSMutableArray* clouds;
+@property (retain, readonly) MyWindowController *windowController;
 
 - (void)pauseAudio;
 - (void)playAudio;

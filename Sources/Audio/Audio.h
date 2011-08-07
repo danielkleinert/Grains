@@ -43,7 +43,7 @@
 }
 
 @property (nonatomic, retain) NSArray* clouds;
-@property (readonly) NSMutableArray* grains;
+@property (nonatomic, retain, readonly) NSMutableArray* grains;
 
 - (id)initWithDocument:(MyDocument*)myDocument;
 - (void)play;
