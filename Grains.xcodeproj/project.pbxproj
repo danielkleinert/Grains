@@ -121,6 +121,7 @@
 		BB69B4DE13EC540C00BC8D7F /* GausianRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GausianRandom.h; sourceTree = "<group>"; };
 		BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GausianRandom.m; sourceTree = "<group>"; };
 		BB69B4E213EC542100BC8D7F /* GausianRandom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GausianRandom.xib; sourceTree = "<group>"; };
+		BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 5.xcdatamodel"; sourceTree = "<group>"; };
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		BBBF616513DDBB25002FF327 /* VVOSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVOSC.framework; sourceTree = "<group>"; };
 		BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -842,11 +843,12 @@
 		BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */,
 				BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */,
 				BBCF2CEA13D99477009D51DA /* MyDocument 2.xcdatamodel */,
 				BBCF2CEB13D99477009D51DA /* MyDocument.xcdatamodel */,
 			);
-			currentVersion = BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */;
+			currentVersion = BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */;
 			path = MyDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

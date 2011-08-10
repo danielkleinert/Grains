@@ -16,5 +16,6 @@
 @property (nonatomic) float from;
 @property (nonatomic) float to;
 @property (nonatomic) float duration;
+@property (nonatomic) BOOL autoReverse;
 
 @end

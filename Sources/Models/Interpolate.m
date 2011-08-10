@@ -14,10 +14,17 @@
 @dynamic from;
 @dynamic to;
 @dynamic duration;
+@dynamic autoReverse;
 
 
 -(void)calculate{
-	float percentPassed = ((UInt64)([NSDate timeIntervalSinceReferenceDate] * 1000) % (UInt64)self.duration) / self.duration;
+	
+	int progressInTwoDurations = (int)((UInt64)([NSDate timeIntervalSinceReferenceDate] * 1000) % (UInt64)(2 * self.duration));
+	float percentPassed = progressInTwoDurations / self.duration;
+	if (progressInTwoDurations > self.duration) {
+		// percentPassed = 1 - ((progressInTwoDurations - self.duration) / self.duration);
+		percentPassed = 2 - percentPassed;
+	} 
 	self.output = [NSNumber numberWithFloat: (percentPassed * (self.to - self.from)) + self.from];
 }
 

@@ -164,76 +164,76 @@
 #pragma mark *** Lace management ***
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-//	if ([keyPath isEqualToString:@"objects"]) {
-//		Reseiver* reseiver;
-//		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
-//			case NSKeyValueChangeInsertion:{
-//				for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
-//					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
-//						[inputHole addObserver:self forKeyPath:@"laces" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-//					}
-//				}
-//				break;
-//			}
-//			case NSKeyValueChangeRemoval:{
-//				for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
-//					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
-//						[inputHole removeObserver:self forKeyPath:@"laces"];
-//					}
-//				}
-//				break;
-//			}
-//			default:
-//				break;
-//		}
-//	} else {
-//		// update conections
-//		NSManagedObjectContext* context = [self.document managedObjectContext];
-//		NSManagedObject* inputHole = object;
-//		NSManagedObject* outputHole;
-//		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
-//			case NSKeyValueChangeInsertion:{
-//				for (outputHole in [change valueForKey:NSKeyValueChangeNewKey]) {
-//					Reseiver* sender = [outputHole valueForKeyPath:@"data.relatedObject"];
-//					Reseiver* reseiver = [inputHole valueForKeyPath:@"data.relatedObject"];
-//					NSString* keyPath = [inputHole valueForKey:@"keyPath"];
-//					
-//					// don't insert the same connection twice (paste -> addLace -> here)
-//					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//					[fetchRequest setEntity:[NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context]];
-//					[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"sender = %@ and reseiver = %@ and keyPath = %@", sender, reseiver, keyPath]];
-//					if ([[context executeFetchRequest:fetchRequest error:nil] count] == 0) {
-//						NSManagedObject* connection = [NSEntityDescription insertNewObjectForEntityForName:@"Connection" inManagedObjectContext:context];
-//						[connection setValue:reseiver  forKey:@"reseiver"];
-//						[connection setValue:sender forKey:@"sender"];
-//						[connection setValue:keyPath forKey:@"keyPath"];
-//					}
-//				}
-//				break;
-//			}
-//			case NSKeyValueChangeRemoval:{
-//				for (outputHole in [change valueForKey:NSKeyValueChangeOldKey]) {
-//					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//					NSEntityDescription *entity = [NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context];
-//					[fetchRequest setEntity:entity];
-//					
-//					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reseiver = %@ and sender = %@ and keyPath = %@", [inputHole valueForKeyPath:@"data.relatedObject"], [outputHole valueForKeyPath:@"data.relatedObject"], [inputHole valueForKey:@"keyPath"]];
-//					[fetchRequest setPredicate:predicate];
-//					
-//					NSError *error = nil;
-//					NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//					if (fetchedObjects == nil) {
-//						NSLog(@"Fetch connection failed");
-//					}
-//					
-//					[context deleteObject:[fetchedObjects objectAtIndex:0]];
-//				}
-//				break;
-//			}
-//			default:
-//				break;
-//		}
-//	}
+	if ([keyPath isEqualToString:@"objects"]) {
+		Reseiver* reseiver;
+		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
+			case NSKeyValueChangeInsertion:{
+				for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
+					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
+						[inputHole addObserver:self forKeyPath:@"laces" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+					}
+				}
+				break;
+			}
+			case NSKeyValueChangeRemoval:{
+				for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
+					for (NSManagedObject* inputHole in reseiver.panel.inputs) {
+						[inputHole removeObserver:self forKeyPath:@"laces"];
+					}
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	} else {
+		// update conections
+		NSManagedObjectContext* context = [self.document managedObjectContext];
+		NSManagedObject* inputHole = object;
+		NSManagedObject* outputHole;
+		switch ([[change valueForKey:NSKeyValueChangeKindKey] intValue]) {
+			case NSKeyValueChangeInsertion:{
+				for (outputHole in [change valueForKey:NSKeyValueChangeNewKey]) {
+					Reseiver* sender = [outputHole valueForKeyPath:@"data.relatedObject"];
+					Reseiver* reseiver = [inputHole valueForKeyPath:@"data.relatedObject"];
+					NSString* keyPath = [inputHole valueForKey:@"keyPath"];
+					
+					// don't insert the same connection twice (paste -> addLace -> here)
+					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+					[fetchRequest setEntity:[NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context]];
+					[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"sender = %@ and reseiver = %@ and keyPath = %@", sender, reseiver, keyPath]];
+					if ([[context executeFetchRequest:fetchRequest error:nil] count] == 0) {
+						NSManagedObject* connection = [NSEntityDescription insertNewObjectForEntityForName:@"Connection" inManagedObjectContext:context];
+						[connection setValue:reseiver  forKey:@"reseiver"];
+						[connection setValue:sender forKey:@"sender"];
+						[connection setValue:keyPath forKey:@"keyPath"];
+					}
+				}
+				break;
+			}
+			case NSKeyValueChangeRemoval:{
+				for (outputHole in [change valueForKey:NSKeyValueChangeOldKey]) {
+					NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+					NSEntityDescription *entity = [NSEntityDescription entityForName:@"Connection" inManagedObjectContext:context];
+					[fetchRequest setEntity:entity];
+					
+					NSPredicate *predicate = [NSPredicate predicateWithFormat:@"reseiver = %@ and sender = %@ and keyPath = %@", [inputHole valueForKeyPath:@"data.relatedObject"], [outputHole valueForKeyPath:@"data.relatedObject"], [inputHole valueForKey:@"keyPath"]];
+					[fetchRequest setPredicate:predicate];
+					
+					NSError *error = nil;
+					NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+					if (fetchedObjects == nil) {
+						NSLog(@"Fetch connection failed");
+					}
+					
+					[context deleteObject:[fetchedObjects objectAtIndex:0]];
+				}
+				break;
+			}
+			default:
+				break;
+		}
+	}
 }
 
 - (void)addLaceForConnection:(Connection*)connection{
