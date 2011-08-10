@@ -95,7 +95,6 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {204, 15}}</string>
 									<reference key="NSSuperview"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:55</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSSliderCell" key="NSCell" id="536554729">
@@ -137,7 +136,6 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {71, 23}}</string>
 									<reference key="NSSuperview"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:1766</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSSegmentedCell" key="NSCell" id="212648875">
@@ -195,7 +193,6 @@
 									<int key="NSvFlags">268</int>
 									<string key="NSFrame">{{0, 14}, {228, 25}}</string>
 									<reference key="NSSuperview"/>
-									<reference key="NSWindow"/>
 									<string key="NSReuseIdentifierKey">_NS:1766</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSSegmentedCell" key="NSCell" id="736970310">
@@ -421,7 +418,7 @@
 												<bool key="EncodedWithXMLCoder">YES</bool>
 												<object class="NSCustomView" id="892451000">
 													<reference key="NSNextResponder" ref="760282811"/>
-													<int key="NSvFlags">256</int>
+													<int key="NSvFlags">288</int>
 													<object class="NSMutableArray" key="NSSubviews">
 														<bool key="EncodedWithXMLCoder">YES</bool>
 														<object class="NSTabView" id="212011195">
@@ -430,6 +427,7 @@
 															<string key="NSFrameSize">{360, 373}</string>
 															<reference key="NSSuperview" ref="892451000"/>
 															<reference key="NSWindow"/>
+															<reference key="NSNextKeyView" ref="333972652"/>
 															<object class="NSMutableArray" key="NSTabViewItems">
 																<bool key="EncodedWithXMLCoder">YES</bool>
 																<object class="NSTabViewItem" id="46923299">
@@ -455,7 +453,7 @@
 																								<string key="NSFrame">{{13, 5}, {87, 17}}</string>
 																								<reference key="NSSuperview" ref="1071302731"/>
 																								<reference key="NSWindow"/>
-																								<reference key="NSNextKeyView" ref="316205369"/>
+																								<reference key="NSNextKeyView"/>
 																								<string key="NSReuseIdentifierKey">_NS:3897</string>
 																								<bool key="NSEnabled">YES</bool>
 																								<object class="NSTextFieldCell" key="NSCell" id="511135434">
@@ -569,7 +567,7 @@
 												</object>
 												<object class="NSCustomView" id="316205369">
 													<reference key="NSNextResponder" ref="760282811"/>
-													<int key="NSvFlags">256</int>
+													<int key="NSvFlags">264</int>
 													<object class="NSMutableArray" key="NSSubviews">
 														<bool key="EncodedWithXMLCoder">YES</bool>
 														<object class="NSBox" id="901775039">
@@ -588,6 +586,7 @@
 																			<string key="NSFrame">{{26, 15}, {328, 19}}</string>
 																			<reference key="NSSuperview" ref="928474377"/>
 																			<reference key="NSWindow"/>
+																			<reference key="NSNextKeyView"/>
 																			<string key="NSReuseIdentifierKey">_NS:142</string>
 																			<bool key="NSEnabled">YES</bool>
 																			<object class="NSSearchFieldCell" key="NSCell" id="197942748">
@@ -1860,7 +1859,6 @@
 							<string>objectsController</string>
 							<string>tabView</string>
 							<string>viewLoadRef</string>
-							<string>viewToggle</string>
 							<string>viewsToggle</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1872,7 +1870,6 @@
 							<string>NSArrayController</string>
 							<string>NSTabView</string>
 							<string>NSView</string>
-							<string>NSToolbarItem</string>
 							<string>NSSegmentedControl</string>
 						</object>
 					</object>
@@ -1887,7 +1884,6 @@
 							<string>objectsController</string>
 							<string>tabView</string>
 							<string>viewLoadRef</string>
-							<string>viewToggle</string>
 							<string>viewsToggle</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -1919,10 +1915,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">viewLoadRef</string>
 								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">viewToggle</string>
-								<string key="candidateClassName">NSToolbarItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">viewsToggle</string>

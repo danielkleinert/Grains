@@ -11,7 +11,6 @@
 #import "Audio.h"
 
 @interface MyDocument : NSPersistentDocument {
-	MyWindowController *windowController;
 	Audio* audio;
 	NSMutableArray *objects;
 	NSMutableArray *clouds;
