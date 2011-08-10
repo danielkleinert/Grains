@@ -56,7 +56,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 					Grain* grain = [[Grain alloc] initWithCloud:cloud in:startsIn];
 					[[audio grains] addObject:grain];
 					[audio->document.windowController.grainView addGrainFromCloud:cloud in:[NSNumber numberWithFloat:(float)startsIn/audio->mDataFormat->mSampleRate]];
-					frames -= cloud->nextGrainCounter;
+					frames -= startsIn;
 					cloud->nextGrainCounter = [cloud.intervall intValue] * audio->mDataFormat->mSampleRate / 1000;
 				} else {
 					cloud->nextGrainCounter -= frames;
@@ -183,7 +183,8 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		
 	} else if ([keyPath isEqualToString:@"intervall"]) {
 		Cloud * cloud = object;
-		cloud->nextGrainCounter = ([cloud.intervall intValue] * mDataFormat->mSampleRate / 1000) - cloud->nextGrainCounter;
+		int newIntervalinFrames = ([cloud.intervall intValue] * mDataFormat->mSampleRate / 1000);
+		cloud->nextGrainCounter =  (newIntervalinFrames > cloud->nextGrainCounter) ? newIntervalinFrames - cloud->nextGrainCounter : 0 ;
 	} else if ([keyPath isEqualToString:@"audioFileUrl"]) {
 		Cloud * cloud = object;
 		[self openAudioFileOfCloud:cloud];
