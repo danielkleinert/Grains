@@ -112,7 +112,7 @@
 }
 
 - (NSArray*)orderdInputs{
-	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackSpeed", @"gain", @"gainVelocity", @"gainAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"envAttack", @"envRelease", nil];
+	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackSpeed", @"playbackSpeedVelocity", @"playbackSpeedAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"gain", @"envAttack", @"envRelease", nil];
 }
 
 @end
