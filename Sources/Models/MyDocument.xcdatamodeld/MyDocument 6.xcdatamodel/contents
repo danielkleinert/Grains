@@ -8,14 +8,17 @@
         <attribute name="envAttackForm" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="envRelease" attributeType="Integer 32" defaultValueString="20"/>
         <attribute name="envReleaseForm" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="envSustain" attributeType="Integer 32" defaultValueString="10"/>
         <attribute name="gain" optional="YES" attributeType="Float" defaultValueString="1"/>
+        <attribute name="gainAcceleration" attributeType="Float" defaultValueString="0"/>
+        <attribute name="gainVelocity" attributeType="Float" defaultValueString="0"/>
         <attribute name="intervall" optional="YES" attributeType="Integer 32" defaultValueString="2000"/>
         <attribute name="pan" optional="YES" attributeType="Float" defaultValueString="0"/>
         <attribute name="panAcceleration" attributeType="Float" defaultValueString="0"/>
         <attribute name="panVelocity" attributeType="Float" defaultValueString="0"/>
-        <attribute name="playbackSpeed" optional="YES" attributeType="Float" defaultValueString="50"/>
-        <attribute name="playbackSpeedAcceleration" attributeType="Float" defaultValueString="0"/>
-        <attribute name="playbackSpeedVelocity" attributeType="Float" defaultValueString="0"/>
+        <attribute name="playbackRate" optional="YES" attributeType="Float" defaultValueString="1"/>
+        <attribute name="playbackRateAcceleration" attributeType="Float" defaultValueString="0"/>
+        <attribute name="playbackRateVelocity" attributeType="Float" defaultValueString="0"/>
         <attribute name="waveForm" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
     <entity name="Connection" representedClassName="Connection">
@@ -95,13 +98,13 @@
         <relationship name="senderConnections" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Connection" inverseName="reseiver" inverseEntity="Connection" indexed="YES"/>
     </entity>
     <elements>
-        <element name="Cloud" positionX="288" positionY="-132" width="128" height="285"/>
+        <element name="Cloud" positionX="288" positionY="-132" width="128" height="330"/>
         <element name="Connection" positionX="-189" positionY="-81" width="128" height="90"/>
         <element name="Effect" positionX="52" positionY="9" width="128" height="60"/>
         <element name="FixedValue" positionX="-198" positionY="90" width="128" height="90"/>
         <element name="GausianRandom" positionX="-137" positionY="288" width="128" height="120"/>
         <element name="InputHole" positionX="-200" positionY="-342" width="128" height="120"/>
-        <element name="Interpolate" positionX="160" positionY="216" width="128" height="90"/>
+        <element name="Interpolate" positionX="160" positionY="216" width="128" height="105"/>
         <element name="JavaScript" positionX="18" positionY="216" width="128" height="135"/>
         <element name="OSCReceive" positionX="-126" positionY="207" width="128" height="60"/>
         <element name="OutputHole" positionX="162" positionY="-342" width="128" height="120"/>

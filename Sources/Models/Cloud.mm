@@ -17,9 +17,9 @@
 @dynamic intervall;
 @dynamic duration;
 
-@dynamic playbackRate;
-@dynamic playbackRateVelocity;
-@dynamic playbackRateAcceleration;
+@dynamic playbackSpeed;
+@dynamic playbackSpeedVelocity;
+@dynamic playbackSpeedAcceleration;
 
 @dynamic gain;
 @dynamic gainVelocity;
@@ -31,7 +31,6 @@
 
 @dynamic envAttackForm;
 @dynamic envAttack;
-@dynamic envSustain;
 @dynamic envReleaseForm;
 @dynamic envRelease;
 
@@ -113,7 +112,7 @@
 }
 
 - (NSArray*)orderdInputs{
-	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackRate", @"playbackRateVelocity", @"playbackRateAcceleration", @"gain", @"gainVelocity", @"gainAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"envAttack", @"envSustain", @"envRelease", nil];
+	return [NSArray arrayWithObjects:@"intervall", @"duration", @"audioFileOffset", @"playbackSpeed", @"gain", @"gainVelocity", @"gainAcceleration", @"pan", @"panVelocity", @"panAcceleration", @"envAttack", @"envRelease", nil];
 }
 
 @end

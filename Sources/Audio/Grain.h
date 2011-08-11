@@ -29,18 +29,15 @@ enum GrainState {
 	SInt64 fileoffset;
 	UInt32 duration;
 	
-	Float32 playbackRate;
-	Float32 playbackRateVelocity;
-	Float32 playbackRateAcceleration;
-	
-	Float32 gain;
-	Float32 gainVelocity;
-	Float32 gainAcceleration;
+	Float32 playbackSpeed;
+	Float32 playbackSpeedVelocity;
+	Float32 playbackSpeedAcceleration;
 	
 	Float32 pan;
 	Float32 panVelocity;
 	Float32 panAcceleration;
 	
+	Float32 gain;
 	UInt32 sustainStartFrame;
 	waveForm attackForm;
 	UInt32 releaseStartFrame;

@@ -58,20 +58,6 @@
 		<key>min</key>
 		<integer>0</integer>
 	</dict>
-	<key>gainAcceleration</key>
-	<dict>
-		<key>max</key>
-		<integer>100</integer>
-		<key>min</key>
-		<integer>0</integer>
-	</dict>
-	<key>gainVelocity</key>
-	<dict>
-		<key>max</key>
-		<integer>100</integer>
-		<key>min</key>
-		<integer>-100</integer>
-	</dict>
 	<key>intervall</key>
 	<dict>
 		<key>max</key>
@@ -89,9 +75,9 @@
 	<key>panAcceleration</key>
 	<dict>
 		<key>max</key>
-		<integer>100</integer>
+		<integer>10000</integer>
 		<key>min</key>
-		<integer>-100</integer>
+		<integer>-10000</integer>
 	</dict>
 	<key>panVelocity</key>
 	<dict>
@@ -100,26 +86,26 @@
 		<key>min</key>
 		<integer>-100</integer>
 	</dict>
-	<key>playbackRate</key>
-	<dict>
-		<key>max</key>
-		<integer>30</integer>
-		<key>min</key>
-		<real>0.03</real>
-	</dict>
-	<key>playbackRateAcceleration</key>
+	<key>playbackSpeed</key>
 	<dict>
 		<key>max</key>
 		<integer>100</integer>
 		<key>min</key>
-		<integer>-100</integer>
+		<integer>0</integer>
 	</dict>
-	<key>playbackRateVelocity</key>
+	<key>playbackSpeedAcceleration</key>
 	<dict>
 		<key>max</key>
-		<integer>100</integer>
+		<integer>100000</integer>
 		<key>min</key>
-		<integer>-100</integer>
+		<integer>-100000</integer>
+	</dict>
+	<key>playbackSpeedVelocity</key>
+	<dict>
+		<key>max</key>
+		<integer>1000</integer>
+		<key>min</key>
+		<integer>-1000</integer>
 	</dict>
 </dict>
 </plist>

@@ -35,18 +35,15 @@
 		#warning dont hardcode samplerate
 		duration = (UInt32)([theCloud.duration intValue] * 44100.0 / 1000);
 		
-		playbackRate = [theCloud.playbackRate floatValue];
-		playbackRateVelocity = [theCloud.playbackRateVelocity floatValue];
-		playbackRateAcceleration = [theCloud.playbackRateAcceleration floatValue];
-		
-		gain = [theCloud.gain floatValue];
-		gainVelocity = [theCloud.gainVelocity floatValue];
-		gainAcceleration = [theCloud.gainAcceleration floatValue];
+		playbackSpeed = [theCloud.playbackSpeed floatValue];
+		playbackSpeedVelocity = [theCloud.playbackSpeedVelocity floatValue];
+		playbackSpeedAcceleration = [theCloud.playbackSpeedAcceleration floatValue];
 		
 		pan = [theCloud.pan floatValue];
 		panVelocity = [theCloud.panVelocity floatValue];
 		panAcceleration = [theCloud.panAcceleration floatValue];
 		
+		gain = [theCloud.gain floatValue];
 		sustainStartFrame = [theCloud.envAttack unsignedIntValue] /100.0 *duration;
 		attackForm = (waveForm)[theCloud.envAttackForm intValue];
 		releaseStartFrame = [theCloud.envRelease unsignedIntValue] /100.0 *duration;
@@ -68,7 +65,7 @@ inline Float32 clamp(Float32 x, Float32 a, Float32 b){return x < a ? a : (x > b 
 	Float32* outBufferData = (Float32*)inCompleteAQBuffer->mAudioData;
 	AudioBufferList tempBufferlist = audio->tempBufferList->GetModifiableBufferList();
 	UInt32 framesToPlay = audio->framesPerBuffer;
-	UInt32 controllRate = 100;
+	UInt32 controllRate = 10;
 	
 	switch (state) {
 		case waiting:
@@ -92,9 +89,9 @@ inline Float32 clamp(Float32 x, Float32 a, Float32 b){return x < a ? a : (x > b 
 				while (framesToPlay>0) {
 					
 					Float32 passed_time = (duration - counter) / (Float32)audio->mDataFormat->mSampleRate;
-					Float32 actual_gain = clamp(gainAcceleration / 2 * powf(passed_time,2) + gainVelocity * passed_time + gain, 0, 1);
 					Float32 actual_pan = clamp((panAcceleration / 2 * powf(passed_time,2) + panVelocity * passed_time + pan + 1) / 2 , 0, 1);
-					Float32 actual_playbackRate = clamp(playbackRateAcceleration / 2 * powf(passed_time,2) + playbackRateVelocity * passed_time + playbackRate, 0.3f, 30);
+					Float32 actual_playbackRate = clamp(playbackSpeedAcceleration / 2 * powf(passed_time,2) + playbackSpeedVelocity * passed_time + playbackSpeed, 0.f, 100);
+					actual_playbackRate = powf(30, (actual_playbackRate/50)-1);
 					
 					if (framesToPlay < controllRate ) controllRate = framesToPlay;
 					
@@ -103,8 +100,8 @@ inline Float32 clamp(Float32 x, Float32 a, Float32 b){return x < a ? a : (x > b 
 					
 					for(UInt32 i = 0; i<controllRate; i ++){
 						UInt32 localFileoffset = (UInt32)(2*(fileoffset+i*actual_playbackRate)) % cloud->numberOfFrames;
-						*outBufferData++ +=  audiofileData[localFileoffset] * *envelope++ * actual_gain * (1 - actual_pan);
-						*outBufferData++ +=  audiofileData[localFileoffset+1] * *envelope++ * actual_gain * actual_pan;
+						*outBufferData++ +=  audiofileData[localFileoffset] * *envelope++ * gain * (1 - actual_pan);
+						*outBufferData++ +=  audiofileData[localFileoffset+1] * *envelope++ * gain * actual_pan;
 					}
 					counter -= controllRate;
 					framesToPlay -= controllRate;

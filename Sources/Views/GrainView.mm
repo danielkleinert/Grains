@@ -33,15 +33,15 @@
 		rootLayer.frame = CGRectMake(10, 10, frame.size.width-20, frame.size.height-20);
 		rootLayer.speed = 0.4f;
 				
-		CIFilter *bloom = [CIFilter filterWithName:@"CIBloom"];
-		[bloom setDefaults];
-		[bloom setValue:[NSNumber numberWithFloat:5.0] forKey:@"inputRadius"];
-		[bloom setName:@"glow"];
-		//[rootLayer setFilters:[NSArray arrayWithObject:bloom]];
+//		CIFilter *bloom = [CIFilter filterWithName:@"CIBloom"];
+//		[bloom setDefaults];
+//		[bloom setValue:[NSNumber numberWithFloat:5.0] forKey:@"inputRadius"];
+//		[bloom setName:@"glow"];
+//		[rootLayer setFilters:[NSArray arrayWithObject:bloom]];
 		
 		propertyMap = [NSDictionary dictionaryWithObjectsAndKeys:
 					   @"pan", @"x",
-					   @"playbackRate", @"y",
+					   @"playbackSpeed", @"y",
 					   // NULL, @"size",
 					   @"audioFileOffset", @"hue",
 					   @"duration", @"saturation",
@@ -76,9 +76,6 @@ inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x)
 	while (t < duration) {
 		float value = (acceleration / 2) * (float)pow(t,2) + (velocity * t) + initialValue;
 		value = clamp(value, propertyMin, propertyMax);
-		if ([key isEqualToString: @"playbackRate"]) {
-			value = logf(value)/logf(powf(propertyMax, 2.0/propertyMax))+propertyMax/2;
-		}
 		value = (value-propertyMin)/(propertyMax-propertyMin) * normelisation;
 		[returnValues addObject:[NSNumber numberWithFloat:value]];
 		t += 1./60.;

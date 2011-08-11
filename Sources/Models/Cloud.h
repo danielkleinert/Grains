@@ -32,22 +32,22 @@ typedef enum {
 @property (nonatomic, retain) NSNumber * waveForm;
 @property (nonatomic, retain) NSURL * audioFileUrl;
 @property (nonatomic, retain) NSNumber * audioFileOffset;
-@property (nonatomic, retain) NSNumber * playbackRate;
+@property (nonatomic, retain) NSNumber * playbackSpeed;
 @property (nonatomic, retain) NSNumber * envReleaseForm;
 @property (nonatomic, retain) NSNumber * gainVelocity;
 @property (nonatomic, retain) NSNumber * pan;
 @property (nonatomic, retain) NSNumber * envAttack;
-@property (nonatomic, retain) NSNumber * playbackRateVelocity;
+@property (nonatomic, retain) NSNumber * playbackSpeedVelocity;
 @property (nonatomic, retain) NSNumber * panAcceleration;
 @property (nonatomic, retain) NSNumber * intervall;
-@property (nonatomic, retain) NSNumber * playbackRateAcceleration;
+@property (nonatomic, retain) NSNumber * playbackSpeedAcceleration;
 @property (nonatomic, retain) NSNumber * gain;
 @property (nonatomic, retain) NSNumber * panVelocity;
 @property (nonatomic, retain) NSNumber * duration;
 @property (nonatomic, retain) NSNumber * gainAcceleration;
 @property (nonatomic, retain) NSNumber * envRelease;
 @property (nonatomic, retain) NSNumber * envAttackForm;
-@property (nonatomic, retain) NSNumber * envSustain;
+
 
 @property(retain, readonly) NSDictionary *validation;
 
