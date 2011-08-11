@@ -22,8 +22,12 @@
 	int progressInTwoDurations = (int)((UInt64)([NSDate timeIntervalSinceReferenceDate] * 1000) % (UInt64)(2 * self.duration));
 	float percentPassed = progressInTwoDurations / self.duration;
 	if (progressInTwoDurations > self.duration) {
-		// percentPassed = 1 - ((progressInTwoDurations - self.duration) / self.duration);
-		percentPassed = 2 - percentPassed;
+		if (self.autoReverse) {
+			// percentPassed = 1 - ((progressInTwoDurations - self.duration) / self.duration);
+			percentPassed = 2 - percentPassed;
+		} else {
+			percentPassed = percentPassed -1;
+		}
 	} 
 	self.output = [NSNumber numberWithFloat: (percentPassed * (self.to - self.from)) + self.from];
 }
