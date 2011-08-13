@@ -50,6 +50,7 @@
 		BBC8F9E213E2BACE0011CA52 /* VVOSC.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBBF616513DDBB25002FF327 /* VVOSC.framework */; };
 		BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCB2DD813E17B20003E5EE1 /* Interpolate.m */; };
 		BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */; };
+		BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = BBCD673B13F69CB600CED581 /* Third-party licenses.xhtml */; };
 		BBCF2C5413D986CC009D51DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2C5313D986CC009D51DA /* Cocoa.framework */; };
 		BBCF2C7F13D98B8F009D51DA /* generate.ck in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7A13D98B8F009D51DA /* generate.ck */; };
 		BBCF2C8013D98B8F009D51DA /* Sawtooth1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7B13D98B8F009D51DA /* Sawtooth1s.aif */; };
@@ -129,6 +130,7 @@
 		BBCB2DD713E17B20003E5EE1 /* Interpolate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpolate.h; sourceTree = "<group>"; };
 		BBCB2DD813E17B20003E5EE1 /* Interpolate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interpolate.m; sourceTree = "<group>"; };
 		BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Interpolate.xib; sourceTree = "<group>"; };
+		BBCD673B13F69CB600CED581 /* Third-party licenses.xhtml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Third-party licenses.xhtml"; sourceTree = "<group>"; };
 		BBCF2C4F13D986CC009D51DA /* Grains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBCF2C5313D986CC009D51DA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BBCF2C5613D986CC009D51DA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -410,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				BBCF2C8E13D98C3B009D51DA /* CloudValidation.plist */,
+				BBCD673B13F69CB600CED581 /* Third-party licenses.xhtml */,
 				BBCF2C9F13D98F05009D51DA /* Credits.rtf */,
 				BBCF2C7913D98974009D51DA /* Image */,
 				BBCF2C7813D98926009D51DA /* Audio */,
@@ -660,6 +663,7 @@
 				BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */,
 				BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */,
 				BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */,
+				BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

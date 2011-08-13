@@ -164,6 +164,14 @@
 }
 
 #pragma mark -
+#pragma mark *** MainMenu ***
+
+- (IBAction)showLicenses:(id)sender{
+	NSURL *licensesURL = [[NSBundle mainBundle] URLForResource:@"Third-party licenses" withExtension:@"xhtml"];
+	[[NSWorkspace sharedWorkspace] openURL:licensesURL];
+}
+
+#pragma mark -
 #pragma mark *** Lace management ***
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{

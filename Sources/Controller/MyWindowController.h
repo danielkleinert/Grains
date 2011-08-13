@@ -38,6 +38,8 @@
 
 @property (assign) IBOutlet NSView* viewLoadRef;
 
+- (IBAction)showLicenses:(id)sender;
+
 - (void)addNewObject:(id)sender;
 - (void)delete:sender; 
 - (void)addLaceForConnection:(Connection*)connection;

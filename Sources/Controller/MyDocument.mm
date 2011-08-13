@@ -20,7 +20,8 @@ NSString *GrainsPBoardType = @"GrainsPBoardType";
 
 @synthesize clouds, windowController;
 
-+ (BOOL)autosavesInPlace {return YES;}
+// doesn't work, dissable for now
+//+ (BOOL)autosavesInPlace {return YES;}
 
 - (id)init {
     self = [super init];
