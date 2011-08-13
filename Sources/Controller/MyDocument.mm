@@ -76,12 +76,14 @@ NSString *GrainsPBoardType = @"GrainsPBoardType";
 		case NSKeyValueChangeInsertion:{
 			for (reseiver in [change valueForKey:NSKeyValueChangeNewKey]) {
 				if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] addObject:reseiver];
+				[[self undoManager] registerUndoWithTarget:self selector:@selector(undoAddToObjects:) object:reseiver];
 			}
 			break;
 		}
 		case NSKeyValueChangeRemoval:{
 			for (reseiver in [change valueForKey:NSKeyValueChangeOldKey]) {
 				if([reseiver isKindOfClass:[Cloud class]]) [[self mutableArrayValueForKey:@"clouds"] removeObject:reseiver];
+				[[self undoManager] registerUndoWithTarget:self selector:@selector(undoRemoveFromObjects:) object:reseiver];
 			}
 			break;
 		}
@@ -90,7 +92,13 @@ NSString *GrainsPBoardType = @"GrainsPBoardType";
 	}
 }
 	
+-(void)undoAddToObjects:(id)object{
+	[[self mutableArrayValueForKey:@"objects"] removeObject:object];
+}
 
+-(void)undoRemoveFromObjects:(id)object{
+	[[self mutableArrayValueForKey:@"objects"] addObject:object];
+}
 
 #pragma mark -
 #pragma mark Audio
@@ -226,7 +234,7 @@ NSString *GrainsPBoardType = @"GrainsPBoardType";
 	else {
 		NSDictionary* userInfo = [inError userInfo];
 		NSLog(@"  %@", userInfo);
-		[[userInfo objectForKey:@"NSValidationErrorObject"] setValue:[NSNumber numberWithInt:10] forKey:[userInfo objectForKey:@"NSValidationErrorKey"]];
+		//[[userInfo objectForKey:@"NSValidationErrorObject"] setValue:[NSNumber numberWithInt:10] forKey:[userInfo objectForKey:@"NSValidationErrorKey"]];
 		return nil;
 	}
 	return inError;

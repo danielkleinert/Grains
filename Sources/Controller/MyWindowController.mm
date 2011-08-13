@@ -14,6 +14,12 @@
 
 @synthesize objectsController, addObjectsController, mainSplitView, tabView, grainView, laceView, viewsToggle, viewLoadRef;
 
+- (void)setDocument:(NSDocument *)document{
+	[super setDocument:document];
+	// keep laces and connections in sync
+	[self.document addObserver:self forKeyPath:@"objects" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+	
+}
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -29,9 +35,6 @@
 	// bind Patchbay
     [laceView bind:@"dataObjects" toObject:objectsController withKeyPath:@"arrangedObjects.panel" options:nil];
 	[laceView bind:@"selectionIndexes" toObject:objectsController withKeyPath:@"selectionIndexes" options:nil];
-	
-	// keep laces and connections in sync
-	[self.document addObserver:self forKeyPath:@"objects" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
 	
 	// Load Controll Panels
 	for (NSString* panelName in effects){
@@ -54,11 +57,11 @@
 
 
 -(void)addNewObject:(id)sender{
+	NSManagedObjectContext *context = [[self document] managedObjectContext];
 	NSString *entetyClass = [[addObjectsController selection] valueForKey:@"class"];
-	Reseiver *newObject = [NSEntityDescription insertNewObjectForEntityForName:entetyClass inManagedObjectContext:[[self document] managedObjectContext]];
+	Reseiver *newObject = [NSEntityDescription insertNewObjectForEntityForName:entetyClass inManagedObjectContext:context];
+	Panel *panel = [Panel newPanelForResiver:newObject inManagedObjectContext:context];
 	
-	Panel *panel = [Panel newPanelForResiver:newObject inManagedObjectContext:[[self document] managedObjectContext]];
-    
 	[[[self document] mutableArrayValueForKey:@"objects"] addObject:newObject];
 	[objectsController setSelectedObjects:[NSArray arrayWithObject: newObject]];
 }
@@ -226,7 +229,10 @@
 						NSLog(@"Fetch connection failed");
 					}
 					
-					[context deleteObject:[fetchedObjects objectAtIndex:0]];
+					if ([fetchedObjects count] > 0) {
+						// if sending object was deleted, the connection was deleted on cascade
+						[context deleteObject:[fetchedObjects objectAtIndex:0]];
+					}
 				}
 				break;
 			}

@@ -68,7 +68,11 @@
 
 -(void)update{
 	[super update];
+	[[self managedObjectContext] processPendingChanges];
+	[[[self managedObjectContext] undoManager] disableUndoRegistration];
 	[self calculate];
+	[[self managedObjectContext] processPendingChanges];
+	[[[self managedObjectContext] undoManager] enableUndoRegistration];
 }
 
 -(void)calculate{}
