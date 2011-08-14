@@ -102,6 +102,9 @@
 		BBCF2DCA13D9C6E4009D51DA /* AudioFileTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CAC13D9934D009D51DA /* AudioFileTransformer.m */; };
 		BBCF2DEB13D9CD6D009D51DA /* EFLaceViewLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */; };
 		BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */; };
+		BBF96F9B13F82554009856F9 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF96F9A13F82554009856F9 /* Math.m */; };
+		BBF96FCE13F82DEA009856F9 /* Math.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF96FCD13F82DEA009856F9 /* Math.xib */; };
+		BBF96FD813F83309009856F9 /* DDMathParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF96FD713F83309009856F9 /* DDMathParser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -293,6 +296,10 @@
 		BBCF2D8E13D99705009D51DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EFLaceViewLib.framework; path = ../../EFLaceView/build/Release/EFLaceViewLib.framework; sourceTree = "<group>"; };
 		BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Top Hat 2.icns"; sourceTree = "<group>"; };
+		BBF96F9913F82554009856F9 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		BBF96F9A13F82554009856F9 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		BBF96FCD13F82DEA009856F9 /* Math.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Math.xib; sourceTree = "<group>"; };
+		BBF96FD713F83309009856F9 /* DDMathParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DDMathParser.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +318,7 @@
 				BBCF2DEB13D9CD6D009D51DA /* EFLaceViewLib.framework in Frameworks */,
 				BBBF616613DDBB25002FF327 /* VVBasics.framework in Frameworks */,
 				BBBF616713DDBB25002FF327 /* VVOSC.framework in Frameworks */,
+				BBF96FD813F83309009856F9 /* DDMathParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +346,7 @@
 		BBCF2C5213D986CC009D51DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBF96FD713F83309009856F9 /* DDMathParser.framework */,
 				BBBF616413DDBB25002FF327 /* VVBasics.framework */,
 				BBBF616513DDBB25002FF327 /* VVOSC.framework */,
 				BBCF2D8E13D99705009D51DA /* AudioToolbox.framework */,
@@ -380,6 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */,
+				BBF96F9913F82554009856F9 /* Math.h */,
+				BBF96F9A13F82554009856F9 /* Math.m */,
 				BBCB2DD713E17B20003E5EE1 /* Interpolate.h */,
 				BBCB2DD813E17B20003E5EE1 /* Interpolate.m */,
 				BBCF2CDF13D99477009D51DA /* Cloud.h */,
@@ -452,6 +463,7 @@
 				BBCF2CCF13D99418009D51DA /* Cloud.xib */,
 				BBCF2CD013D99418009D51DA /* FixedValue.xib */,
 				BBCF2CD113D99418009D51DA /* JavaScript.xib */,
+				BBF96FCD13F82DEA009856F9 /* Math.xib */,
 				BBCF2CD413D99418009D51DA /* OSCReceive.xib */,
 				BBCF2CD513D99418009D51DA /* Queue.xib */,
 				BBCF2CD613D99418009D51DA /* Random.xib */,
@@ -664,6 +676,7 @@
 				BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */,
 				BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */,
 				BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */,
+				BBF96FCE13F82DEA009856F9 /* Math.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +745,7 @@
 				BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */,
 				BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */,
 				BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */,
+				BBF96F9B13F82554009856F9 /* Math.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

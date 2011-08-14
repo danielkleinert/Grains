@@ -59,6 +59,14 @@
         <attribute name="input4" optional="YES" attributeType="Float" defaultValueString="0"/>
         <attribute name="script" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Math" representedClassName="Math" parentEntity="Effect">
+        <attribute name="error" optional="YES" attributeType="String"/>
+        <attribute name="formula" optional="YES" attributeType="String"/>
+        <attribute name="input1" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input2" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input3" optional="YES" attributeType="Float" defaultValueString="0"/>
+        <attribute name="input4" optional="YES" attributeType="Float" defaultValueString="0"/>
+    </entity>
     <entity name="OSCReceive" representedClassName="OSCReceive" parentEntity="Effect">
         <attribute name="address" optional="YES" attributeType="String"/>
     </entity>
@@ -103,6 +111,7 @@
         <element name="InputHole" positionX="-200" positionY="-342" width="128" height="120"/>
         <element name="Interpolate" positionX="160" positionY="216" width="128" height="90"/>
         <element name="JavaScript" positionX="18" positionY="216" width="128" height="135"/>
+        <element name="Math" positionX="18" positionY="360" width="128" height="135"/>
         <element name="OSCReceive" positionX="-126" positionY="207" width="128" height="60"/>
         <element name="OutputHole" positionX="162" positionY="-342" width="128" height="120"/>
         <element name="Panel" positionX="-38" positionY="-477" width="128" height="210"/>
