@@ -20,7 +20,7 @@
 
 - (void)awake;
 
-- (void)update;
+- (void)updateForRound:(int)round;
 - (NSArray*)orderdInputs;
 
 @end

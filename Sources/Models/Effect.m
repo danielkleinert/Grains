@@ -17,6 +17,7 @@
 
 - (void)awake {
 	[self addObserver:self forKeyPath:@"output" options:0 context:@"output"];
+	lastCalculatedRound = 0;
 }
 
 - (void)didTurnIntoFault
@@ -66,13 +67,16 @@
 	}
 }
 
--(void)update{
-	[super update];
-	[[self managedObjectContext] processPendingChanges];
-	[[[self managedObjectContext] undoManager] disableUndoRegistration];
-	[self calculate];
-	[[self managedObjectContext] processPendingChanges];
-	[[[self managedObjectContext] undoManager] enableUndoRegistration];
+-(void)updateForRound:(int)round{
+	[super updateForRound:round];
+	if (round != lastCalculatedRound){
+		[[self managedObjectContext] processPendingChanges];
+		[[[self managedObjectContext] undoManager] disableUndoRegistration];
+		[self calculate];
+		[[self managedObjectContext] processPendingChanges];
+		[[[self managedObjectContext] undoManager] enableUndoRegistration];
+		lastCalculatedRound = round;
+	}
 }
 
 -(void)calculate{}

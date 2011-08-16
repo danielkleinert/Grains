@@ -30,6 +30,7 @@
 	UInt32								framesPerBuffer;
 	CABufferList 						*tempBufferList;
 	float								volume;
+	int									round;
 	
 	MyDocument __unsafe_unretained 		*document;
 	NSMutableArray 					 	*clouds;

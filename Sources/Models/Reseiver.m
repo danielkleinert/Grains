@@ -35,9 +35,9 @@
 	return NSNotApplicableMarker;
 }
 
-- (void)update{
+- (void)updateForRound:(int)round{
 	for (Connection* senderConnection in self.senderConnections) {
-		[senderConnection.sender update];
+		[senderConnection.sender updateForRound:round];
 	}
 }
 

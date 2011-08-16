@@ -24,7 +24,7 @@
 - (void)windowDidLoad {
     [super windowDidLoad];
     
-	NSArray *effects = [NSArray arrayWithObjects:@"Cloud", @"Random", @"GausianRandom", @"FixedValue", @"Queue", @"Interpolate", @"OSCReceive", @"Math", nil];
+	NSArray *effects = [NSArray arrayWithObjects:@"Cloud", @"Random", @"GausianRandom", @"Queue", @"Interpolate", @"OSCReceive", @"Math", @"Buffer", @"FixedValue", nil];
 	
 	// Populate AddController
 	for (NSString* className in effects) {

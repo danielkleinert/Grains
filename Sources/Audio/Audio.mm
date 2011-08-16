@@ -52,7 +52,8 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 			while (frames > 0) {
 				if (cloud->nextGrainCounter < frames) {
 					startsIn += cloud->nextGrainCounter;
-					[cloud update];
+					[cloud updateForRound:audio->round];
+					audio->round++;
 					Grain* grain = [[Grain alloc] initWithCloud:cloud in:startsIn];
 					[[audio grains] addObject:grain];
 					[audio->document.windowController.grainView addGrainFromCloud:cloud in:[NSNumber numberWithFloat:(float)startsIn/audio->mDataFormat->mSampleRate]];
@@ -83,6 +84,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		nextGrainCounters = [NSMutableDictionary dictionary];
 		isRecording = NO;
 		volume = 0.8;
+		round=1;
 		
 		double sampleRate = 44100.0;
 		UInt32 numChannels = 2;
@@ -93,7 +95,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		
 		tempBufferList = CABufferList::New(*mDataFormat);
 		
-		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (void*)objc_unretainedPointer(self), nil, kCFRunLoopCommonModes, 0, &mQueue);
+		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (void*)objc_unretainedPointer(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
 		if(result) NSLog(@"AudioQueueNew failed");
 		
 		for (int i = 0; i < kNumberBuffers; ++i) {

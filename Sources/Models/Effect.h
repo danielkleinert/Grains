@@ -15,11 +15,12 @@
 @interface Effect : Reseiver {
 @private
 	NSNumber* output;
+	int lastCalculatedRound;
 }
 @property (nonatomic, retain) NSSet* reseiverConections;
 @property (nonatomic, retain) NSNumber* output;
 
--(void)update;
+-(void)updateForRound:(int)round;
 -(void)calculate;
 
 @end

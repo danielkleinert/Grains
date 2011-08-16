@@ -10,6 +10,8 @@
 		BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */; };
 		BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */; };
 		BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB69B4E213EC542100BC8D7F /* GausianRandom.xib */; };
+		BB7CC9C713FA78C7005DB313 /* Buffer.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7CC9C613FA78C7005DB313 /* Buffer.xib */; };
+		BB7CC9CD13FA7E6D005DB313 /* Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7CC9CC13FA7E6D005DB313 /* Buffer.m */; };
 		BBBF613913DDB40B002FF327 /* Audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0813D9958E009D51DA /* Audio.mm */; };
 		BBBF613B13DDB40F002FF327 /* Grain.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0A13D9958E009D51DA /* Grain.mm */; };
 		BBBF613C13DDB7FA002FF327 /* CAAudioBufferList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0F13D995B5009D51DA /* CAAudioBufferList.cpp */; };
@@ -125,6 +127,10 @@
 		BB69B4DE13EC540C00BC8D7F /* GausianRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GausianRandom.h; sourceTree = "<group>"; };
 		BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GausianRandom.m; sourceTree = "<group>"; };
 		BB69B4E213EC542100BC8D7F /* GausianRandom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GausianRandom.xib; sourceTree = "<group>"; };
+		BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 7.xcdatamodel"; sourceTree = "<group>"; };
+		BB7CC9C613FA78C7005DB313 /* Buffer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Buffer.xib; sourceTree = "<group>"; };
+		BB7CC9CB13FA7E6D005DB313 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
+		BB7CC9CC13FA7E6D005DB313 /* Buffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Buffer.m; sourceTree = "<group>"; };
 		BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 5.xcdatamodel"; sourceTree = "<group>"; };
 		BBA6250713F3F08100A49F6A /* MyDocument 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 6.xcdatamodel"; sourceTree = "<group>"; };
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
@@ -389,6 +395,8 @@
 			isa = PBXGroup;
 			children = (
 				BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */,
+				BB7CC9CB13FA7E6D005DB313 /* Buffer.h */,
+				BB7CC9CC13FA7E6D005DB313 /* Buffer.m */,
 				BBF96F9913F82554009856F9 /* Math.h */,
 				BBF96F9A13F82554009856F9 /* Math.m */,
 				BBCB2DD713E17B20003E5EE1 /* Interpolate.h */,
@@ -461,6 +469,7 @@
 				BBCF2CD313D99418009D51DA /* MyDocument.xib */,
 				BBCF2CD213D99418009D51DA /* MainMenu.xib */,
 				BBCF2CCF13D99418009D51DA /* Cloud.xib */,
+				BB7CC9C613FA78C7005DB313 /* Buffer.xib */,
 				BBCF2CD013D99418009D51DA /* FixedValue.xib */,
 				BBCF2CD113D99418009D51DA /* JavaScript.xib */,
 				BBF96FCD13F82DEA009856F9 /* Math.xib */,
@@ -677,6 +686,7 @@
 				BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */,
 				BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */,
 				BBF96FCE13F82DEA009856F9 /* Math.xib in Resources */,
+				BB7CC9C713FA78C7005DB313 /* Buffer.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +756,7 @@
 				BBCB2DD913E17B20003E5EE1 /* Interpolate.m in Sources */,
 				BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */,
 				BBF96F9B13F82554009856F9 /* Math.m in Sources */,
+				BB7CC9CD13FA7E6D005DB313 /* Buffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,12 +874,13 @@
 			isa = XCVersionGroup;
 			children = (
 				BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */,
+				BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */,
 				BBA6250713F3F08100A49F6A /* MyDocument 6.xcdatamodel */,
 				BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */,
 				BBCF2CEA13D99477009D51DA /* MyDocument 2.xcdatamodel */,
 				BBCF2CEB13D99477009D51DA /* MyDocument.xcdatamodel */,
 			);
-			currentVersion = BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */;
+			currentVersion = BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */;
 			path = MyDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
