@@ -135,6 +135,7 @@
 		BBA6250713F3F08100A49F6A /* MyDocument 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 6.xcdatamodel"; sourceTree = "<group>"; };
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		BBBF616513DDBB25002FF327 /* VVOSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVOSC.framework; sourceTree = "<group>"; };
+		BBC6133C13FBE64A000FEDA3 /* MyDocument 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 8.xcdatamodel"; sourceTree = "<group>"; };
 		BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 3.xcdatamodel"; sourceTree = "<group>"; };
 		BBCB2DD713E17B20003E5EE1 /* Interpolate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpolate.h; sourceTree = "<group>"; };
 		BBCB2DD813E17B20003E5EE1 /* Interpolate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Interpolate.m; sourceTree = "<group>"; };
@@ -875,12 +876,13 @@
 			children = (
 				BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */,
 				BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */,
+				BBC6133C13FBE64A000FEDA3 /* MyDocument 8.xcdatamodel */,
 				BBA6250713F3F08100A49F6A /* MyDocument 6.xcdatamodel */,
 				BBCB2DD313E17835003E5EE1 /* MyDocument 3.xcdatamodel */,
 				BBCF2CEA13D99477009D51DA /* MyDocument 2.xcdatamodel */,
 				BBCF2CEB13D99477009D51DA /* MyDocument.xcdatamodel */,
 			);
-			currentVersion = BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */;
+			currentVersion = BBC6133C13FBE64A000FEDA3 /* MyDocument 8.xcdatamodel */;
 			path = MyDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

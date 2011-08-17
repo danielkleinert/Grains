@@ -33,8 +33,8 @@
 }
 
 -(BOOL)validateDuration:(id *)ioValue error:(NSError **)outError{
-	if ([*ioValue floatValue] <= 0) {
-		*ioValue = [NSNumber numberWithFloat:0.0001];
+	if ([*ioValue floatValue] < 1) {
+		*ioValue = [NSNumber numberWithFloat:1];
 	}
 	return YES;
 }

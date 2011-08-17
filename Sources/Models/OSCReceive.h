@@ -18,6 +18,8 @@
 @private
 }
 @property (nonatomic, retain) NSString * address;
+@property (nonatomic) int index;
+
 @property (nonatomic, retain) GrainsOSCManager *manager;
 @property (nonatomic) BOOL listenForNextAdress;
 

@@ -10,6 +10,7 @@
 
 @implementation OSCReceive
 @dynamic address;
+@dynamic index;
 @synthesize manager;
 @synthesize listenForNextAdress;
 
@@ -63,16 +64,12 @@
 
 - (void)resivedOSCMeassage:(NSNotification *)notification{
 	OSCMessage *message = [notification.userInfo objectForKey:@"message"];
-	OSCValue *value = message.value;
-	if (listenForNextAdress && (value.type == OSCValInt || value.type == OSCValFloat)) {
+	if (listenForNextAdress) {
 		self.listenForNextAdress = NO;
 		self.address = message.address;
 	}
-	if (value.type == OSCValInt) {
-		self.output = [NSNumber numberWithInt:[value intValue]];
-	} else if(value.type == OSCValFloat) {
-		self.output = [NSNumber numberWithFloat:[value floatValue]];
-	}	  
+	self.output = [NSNumber numberWithFloat:[message calculateFloatValueAtIndex:self.index]];
+	  
 }
 
 
