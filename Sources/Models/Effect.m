@@ -70,11 +70,7 @@
 -(void)updateForRound:(int)round{
 	[super updateForRound:round];
 	if (round != lastCalculatedRound){
-		[[self managedObjectContext] processPendingChanges];
-		[[[self managedObjectContext] undoManager] disableUndoRegistration];
 		[self calculate];
-		[[self managedObjectContext] processPendingChanges];
-		[[[self managedObjectContext] undoManager] enableUndoRegistration];
 		lastCalculatedRound = round;
 	}
 }

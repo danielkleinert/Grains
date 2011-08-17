@@ -32,6 +32,12 @@
 	self.output = [NSNumber numberWithFloat: (percentPassed * (self.to - self.from)) + self.from];
 }
 
+-(BOOL)validateDuration:(id *)ioValue error:(NSError **)outError{
+	if ([*ioValue floatValue] <= 0) {
+		*ioValue = [NSNumber numberWithFloat:0.0001];
+	}
+	return YES;
+}
 
 
 @end

@@ -16,9 +16,9 @@
 	NSTimeInterval refreshTime;
 }
 
-@property (nonatomic) NSNumber *input;
-@property (nonatomic) int mode;
-@property (nonatomic) int grains;
-@property (nonatomic) UInt64 milliseconds;
+@property (nonatomic, retain) NSNumber *input;
+@property (nonatomic, retain) NSNumber *mode;
+@property (nonatomic, retain) NSNumber *grains;
+@property (nonatomic, retain) NSNumber *milliseconds;
 
 @end

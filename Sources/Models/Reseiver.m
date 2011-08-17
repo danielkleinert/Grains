@@ -36,9 +36,13 @@
 }
 
 - (void)updateForRound:(int)round{
+	[[self managedObjectContext] processPendingChanges];
+	[[[self managedObjectContext] undoManager] disableUndoRegistration];
 	for (Connection* senderConnection in self.senderConnections) {
 		[senderConnection.sender updateForRound:round];
 	}
+	[[self managedObjectContext] processPendingChanges];
+	[[[self managedObjectContext] undoManager] enableUndoRegistration];
 }
 
 - (NSArray*)orderdInputs{
