@@ -24,12 +24,14 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		memset(outBuffer, 0, inCompleteAQBuffer->mAudioDataBytesCapacity);
 		
 		// play Grains
+		NSMutableArray *finishedGraines = [[NSMutableArray alloc] init];
 		for (Grain* grain in audio.grains) {
 			audio->tempBufferList->Reset();
 			audio->tempBufferList->AllocateBuffers(inCompleteAQBuffer->mAudioDataBytesCapacity);
 			[grain synthesizeAudioOf:audio to:inCompleteAQBuffer];
-			if (grain.state == finished) [audio.grains performSelector:@selector(removeObject:) withObject:grain afterDelay:0];
+			if (grain.state == finished) [finishedGraines addObject:grain];
 		}
+		[audio.grains removeObjectsInArray:finishedGraines];
 		
 		// playback
 		inCompleteAQBuffer->mAudioDataByteSize = inCompleteAQBuffer->mAudioDataBytesCapacity;

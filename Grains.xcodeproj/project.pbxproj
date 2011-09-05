@@ -54,11 +54,6 @@
 		BBCB2DDB13E183A3003E5EE1 /* Interpolate.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBCB2DDA13E183A3003E5EE1 /* Interpolate.xib */; };
 		BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */ = {isa = PBXBuildFile; fileRef = BBCD673B13F69CB600CED581 /* Third-party licenses.xhtml */; };
 		BBCF2C5413D986CC009D51DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2C5313D986CC009D51DA /* Cocoa.framework */; };
-		BBCF2C7F13D98B8F009D51DA /* generate.ck in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7A13D98B8F009D51DA /* generate.ck */; };
-		BBCF2C8013D98B8F009D51DA /* Sawtooth1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7B13D98B8F009D51DA /* Sawtooth1s.aif */; };
-		BBCF2C8113D98B8F009D51DA /* Sine1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7C13D98B8F009D51DA /* Sine1s.aif */; };
-		BBCF2C8213D98B8F009D51DA /* Square1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7D13D98B8F009D51DA /* Square1s.aif */; };
-		BBCF2C8313D98B8F009D51DA /* Triangle1s.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C7E13D98B8F009D51DA /* Triangle1s.aif */; };
 		BBCF2C8913D98C01009D51DA /* oscillator_custom.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C8413D98C01009D51DA /* oscillator_custom.png */; };
 		BBCF2C8A13D98C01009D51DA /* oscillator_saw.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C8513D98C01009D51DA /* oscillator_saw.png */; };
 		BBCF2C8B13D98C01009D51DA /* oscillator_sine.png in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2C8613D98C01009D51DA /* oscillator_sine.png */; };
@@ -104,6 +99,10 @@
 		BBCF2DCA13D9C6E4009D51DA /* AudioFileTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CAC13D9934D009D51DA /* AudioFileTransformer.m */; };
 		BBCF2DEB13D9CD6D009D51DA /* EFLaceViewLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */; };
 		BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */; };
+		BBE95FC41413DCB900669E6E /* Sawtooth.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FBF1413DCB900669E6E /* Sawtooth.aif */; };
+		BBE95FC51413DCB900669E6E /* Sine.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FC01413DCB900669E6E /* Sine.aif */; };
+		BBE95FC61413DCB900669E6E /* Square.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FC11413DCB900669E6E /* Square.aif */; };
+		BBE95FC71413DCB900669E6E /* Triangle.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FC21413DCB900669E6E /* Triangle.aif */; };
 		BBF96F9B13F82554009856F9 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF96F9A13F82554009856F9 /* Math.m */; };
 		BBF96FCE13F82DEA009856F9 /* Math.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBF96FCD13F82DEA009856F9 /* Math.xib */; };
 		BBF96FD813F83309009856F9 /* DDMathParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBF96FD713F83309009856F9 /* DDMathParser.framework */; };
@@ -146,11 +145,6 @@
 		BBCF2C5613D986CC009D51DA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		BBCF2C5713D986CC009D51DA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BBCF2C5813D986CC009D51DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BBCF2C7A13D98B8F009D51DA /* generate.ck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generate.ck; sourceTree = "<group>"; };
-		BBCF2C7B13D98B8F009D51DA /* Sawtooth1s.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sawtooth1s.aif; sourceTree = "<group>"; };
-		BBCF2C7C13D98B8F009D51DA /* Sine1s.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sine1s.aif; sourceTree = "<group>"; };
-		BBCF2C7D13D98B8F009D51DA /* Square1s.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Square1s.aif; sourceTree = "<group>"; };
-		BBCF2C7E13D98B8F009D51DA /* Triangle1s.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Triangle1s.aif; sourceTree = "<group>"; };
 		BBCF2C8413D98C01009D51DA /* oscillator_custom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oscillator_custom.png; sourceTree = "<group>"; };
 		BBCF2C8513D98C01009D51DA /* oscillator_saw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oscillator_saw.png; sourceTree = "<group>"; };
 		BBCF2C8613D98C01009D51DA /* oscillator_sine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oscillator_sine.png; sourceTree = "<group>"; };
@@ -303,6 +297,11 @@
 		BBCF2D8E13D99705009D51DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EFLaceViewLib.framework; path = ../../EFLaceView/build/Release/EFLaceViewLib.framework; sourceTree = "<group>"; };
 		BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Top Hat 2.icns"; sourceTree = "<group>"; };
+		BBE95FBE1413DCB900669E6E /* generate.ck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generate.ck; sourceTree = "<group>"; };
+		BBE95FBF1413DCB900669E6E /* Sawtooth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sawtooth.aif; sourceTree = "<group>"; };
+		BBE95FC01413DCB900669E6E /* Sine.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sine.aif; sourceTree = "<group>"; };
+		BBE95FC11413DCB900669E6E /* Square.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Square.aif; sourceTree = "<group>"; };
+		BBE95FC21413DCB900669E6E /* Triangle.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Triangle.aif; sourceTree = "<group>"; };
 		BBF96F9913F82554009856F9 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
 		BBF96F9A13F82554009856F9 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
 		BBF96FCD13F82DEA009856F9 /* Math.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Math.xib; sourceTree = "<group>"; };
@@ -443,11 +442,11 @@
 		BBCF2C7813D98926009D51DA /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				BBCF2C7A13D98B8F009D51DA /* generate.ck */,
-				BBCF2C7B13D98B8F009D51DA /* Sawtooth1s.aif */,
-				BBCF2C7C13D98B8F009D51DA /* Sine1s.aif */,
-				BBCF2C7D13D98B8F009D51DA /* Square1s.aif */,
-				BBCF2C7E13D98B8F009D51DA /* Triangle1s.aif */,
+				BBE95FBE1413DCB900669E6E /* generate.ck */,
+				BBE95FBF1413DCB900669E6E /* Sawtooth.aif */,
+				BBE95FC01413DCB900669E6E /* Sine.aif */,
+				BBE95FC11413DCB900669E6E /* Square.aif */,
+				BBE95FC21413DCB900669E6E /* Triangle.aif */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -662,11 +661,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBCF2C7F13D98B8F009D51DA /* generate.ck in Resources */,
-				BBCF2C8013D98B8F009D51DA /* Sawtooth1s.aif in Resources */,
-				BBCF2C8113D98B8F009D51DA /* Sine1s.aif in Resources */,
-				BBCF2C8213D98B8F009D51DA /* Square1s.aif in Resources */,
-				BBCF2C8313D98B8F009D51DA /* Triangle1s.aif in Resources */,
 				BBCF2C8913D98C01009D51DA /* oscillator_custom.png in Resources */,
 				BBCF2C8A13D98C01009D51DA /* oscillator_saw.png in Resources */,
 				BBCF2C8B13D98C01009D51DA /* oscillator_sine.png in Resources */,
@@ -688,6 +682,10 @@
 				BBCD673C13F69CB700CED581 /* Third-party licenses.xhtml in Resources */,
 				BBF96FCE13F82DEA009856F9 /* Math.xib in Resources */,
 				BB7CC9C713FA78C7005DB313 /* Buffer.xib in Resources */,
+				BBE95FC41413DCB900669E6E /* Sawtooth.aif in Resources */,
+				BBE95FC51413DCB900669E6E /* Sine.aif in Resources */,
+				BBE95FC61413DCB900669E6E /* Square.aif in Resources */,
+				BBE95FC71413DCB900669E6E /* Triangle.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

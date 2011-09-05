@@ -12,9 +12,9 @@
 	<key>duration</key>
 	<dict>
 		<key>max</key>
-		<integer>200</integer>
+		<integer>100000</integer>
 		<key>min</key>
-		<integer>5</integer>
+		<integer>1</integer>
 	</dict>
 	<key>envAttack</key>
 	<dict>

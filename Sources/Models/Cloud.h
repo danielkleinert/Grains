@@ -27,6 +27,7 @@ typedef enum {
 	UInt32 nextGrainCounter;
 	CABufferList* audioFileBuffer;
 	UInt32 numberOfFrames;
+	UInt32 filePlaybackRateOffset;
 }
 
 @property (nonatomic, retain) NSNumber * waveForm;

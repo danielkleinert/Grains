@@ -1,17 +1,19 @@
-"~/chuck/" => string path;
-1 => int seconds;
+"/Users/hannahkloidt/Documents/" => string path;
+440 / 10 => int freq;
 
 SinOsc sin => WvOut sinOut => blackhole;
 SqrOsc sqr => WvOut sqrOut => blackhole;
 TriOsc tri => WvOut triOut => blackhole;
 SawOsc saw => WvOut sawOut => blackhole;
 
-path + "Sine" + seconds + "s.aif" => sinOut.aifFilename;
-path + "Square" + seconds + "s.aif" => sqrOut.aifFilename;
-path + "Triangle" + seconds + "s.aif" => triOut.aifFilename;
-path + "Sawtooth" + seconds + "s.aif" => sawOut.aifFilename;
+freq => sin.freq => sqr.freq => tri.freq => saw.freq;
 
-seconds::second + now => now;
+path + "Sine.aif" => sinOut.aifFilename;
+path + "Square.aif" => sqrOut.aifFilename;
+path + "Triangle.aif" => triOut.aifFilename;
+path + "Sawtooth.aif" => sawOut.aifFilename;
+
+(1.0/freq)::second + now => now;
 
 "close" => sinOut.closeFile;
 "close" => sqrOut.closeFile;

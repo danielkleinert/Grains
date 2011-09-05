@@ -94,16 +94,20 @@
 	if ([keyPath isEqualToString:@"waveForm"])	{
 		switch ([self.waveForm intValue]) {
 			case 0:
-				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Sine1s" withExtension:@"aif"];
+				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Sine" withExtension:@"aif"];
+				filePlaybackRateOffset = 10;
 				break;
 			case 1:
-				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Square1s" withExtension:@"aif"];
+				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Square" withExtension:@"aif"];
+				filePlaybackRateOffset = 10;
 				break;
 			case 2:
-				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Sawtooth1s" withExtension:@"aif"];
+				self.audioFileUrl = [[NSBundle mainBundle] URLForResource:@"Sawtooth" withExtension:@"aif"];
+				filePlaybackRateOffset = 10;
 				break;				
 			case 3:
 				self.audioFileUrl = NULL;
+				filePlaybackRateOffset = 0;
 				break;
 		}
 	} else {

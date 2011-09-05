@@ -91,7 +91,7 @@ inline Float32 clamp(Float32 x, Float32 a, Float32 b){return x < a ? a : (x > b 
 					Float32 passed_time = (duration - counter) / (Float32)audio->mDataFormat->mSampleRate;
 					Float32 actual_pan = clamp((panAcceleration / 2 * powf(passed_time,2) + panVelocity * passed_time + pan + 1) / 2 , 0, 1);
 					Float32 actual_playbackRate = clamp(playbackSpeedAcceleration / 2 * powf(passed_time,2) + playbackSpeedVelocity * passed_time + playbackSpeed, 0.f, 100);
-					actual_playbackRate = powf(30, (actual_playbackRate/50)-1);
+					actual_playbackRate = powf(30, (actual_playbackRate/50)-1)+cloud->filePlaybackRateOffset;
 					
 					if (framesToPlay < controllRate ) controllRate = framesToPlay;
 					
@@ -99,9 +99,11 @@ inline Float32 clamp(Float32 x, Float32 a, Float32 b){return x < a ? a : (x > b 
 					[self calculeteEnvelopeWithBuffer:envelope frames:controllRate];
 					
 					for(UInt32 i = 0; i<controllRate; i ++){
-						UInt32 localFileoffset = (UInt32)(2*(fileoffset+i*actual_playbackRate)) % cloud->numberOfFrames;
-						*outBufferData++ +=  audiofileData[localFileoffset] * *envelope++ * gain * (1 - actual_pan);
-						*outBufferData++ +=  audiofileData[localFileoffset+1] * *envelope++ * gain * actual_pan;
+						UInt32 localFileoffset = (UInt32)(2*(fileoffset+i*actual_playbackRate)) % (2*cloud->numberOfFrames);
+						*outBufferData +=  audiofileData[localFileoffset] * *envelope++ * gain * (1 - actual_pan); 
+						outBufferData++;
+						*outBufferData +=  audiofileData[localFileoffset+1] * *envelope++ * gain * actual_pan; 
+						outBufferData++;
 					}
 					counter -= controllRate;
 					framesToPlay -= controllRate;
