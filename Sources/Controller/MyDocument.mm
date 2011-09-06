@@ -53,16 +53,22 @@ NSString *GrainsPBoardType = @"GrainsPBoardType";
     windowController = [[MyWindowController alloc] initWithWindowNibName:@"MyDocument"];
     [self addWindowController:windowController];
 	
+
+}
+
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError *__autoreleasing *)error{
+	BOOL returnValue = [super readFromURL:absoluteURL ofType:typeName error:error];
 	// Reload saved Objects
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Reseiver" inManagedObjectContext:[self managedObjectContext]];
 	[fetchRequest setEntity:entity];
-	NSError *error = nil;
-	NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
+	NSError *fetchError = nil;
+	NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&fetchError];
 	if (fetchedObjects == nil) {
 		NSLog(@"Fetch objects failed");
 	}
 	[[self mutableArrayValueForKey:@"objects"] addObjectsFromArray:fetchedObjects];
+	return returnValue;
 }
 
 - (void)dealloc{

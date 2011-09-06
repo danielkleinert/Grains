@@ -61,6 +61,9 @@ inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x)
 	if (key == NULL) return 0;
 	float propertyMin = [[[cloud.validation objectForKey:key] objectForKey:@"min"] floatValue];
 	float propertyMax = [[[cloud.validation objectForKey:key] objectForKey:@"max"] floatValue];
+	if ([key isEqualToString:@"duration"]) {
+		propertyMax = 100;
+	}
 	
 	float initialValue = [[cloud valueForKeyPath:key] floatValue];
 	float velocity, acceleration;

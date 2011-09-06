@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB1FB30E1416052A0050AA5C /* DDMathParser.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBF96FD713F83309009856F9 /* DDMathParser.framework */; };
 		BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */; };
 		BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */; };
 		BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB69B4E213EC542100BC8D7F /* GausianRandom.xib */; };
 		BB7CC9C713FA78C7005DB313 /* Buffer.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7CC9C613FA78C7005DB313 /* Buffer.xib */; };
 		BB7CC9CD13FA7E6D005DB313 /* Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7CC9CC13FA7E6D005DB313 /* Buffer.m */; };
+		BBAF80EA14152F080068CD4A /* MeueController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF80E914152F080068CD4A /* MeueController.m */; };
+		BBB5CCF71416223E002F9280 /* Ants.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF01416223E002F9280 /* Ants.grains */; };
+		BBB5CCF81416223E002F9280 /* Beats.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF11416223E002F9280 /* Beats.grains */; };
+		BBB5CCF91416223E002F9280 /* Brew.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF21416223E002F9280 /* Brew.grains */; };
+		BBB5CCFA1416223E002F9280 /* Matrix.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF31416223E002F9280 /* Matrix.grains */; };
+		BBB5CCFB1416223E002F9280 /* OSC.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF41416223E002F9280 /* OSC.grains */; };
+		BBB5CCFC1416223E002F9280 /* Pong.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF51416223E002F9280 /* Pong.grains */; };
+		BBB5CCFD1416223E002F9280 /* Triplets.grains in Resources */ = {isa = PBXBuildFile; fileRef = BBB5CCF61416223E002F9280 /* Triplets.grains */; };
 		BBBF613913DDB40B002FF327 /* Audio.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0813D9958E009D51DA /* Audio.mm */; };
 		BBBF613B13DDB40F002FF327 /* Grain.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0A13D9958E009D51DA /* Grain.mm */; };
 		BBBF613C13DDB7FA002FF327 /* CAAudioBufferList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2D0F13D995B5009D51DA /* CAAudioBufferList.cpp */; };
@@ -117,6 +126,7 @@
 			files = (
 				BBC8F9E113E2BACE0011CA52 /* VVBasics.framework in CopyFiles */,
 				BBC8F9E213E2BACE0011CA52 /* VVOSC.framework in CopyFiles */,
+				BB1FB30E1416052A0050AA5C /* DDMathParser.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +142,15 @@
 		BB7CC9CC13FA7E6D005DB313 /* Buffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Buffer.m; sourceTree = "<group>"; };
 		BB91BC9D13F2FC420072D114 /* MyDocument 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 5.xcdatamodel"; sourceTree = "<group>"; };
 		BBA6250713F3F08100A49F6A /* MyDocument 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 6.xcdatamodel"; sourceTree = "<group>"; };
+		BBAF80E814152F080068CD4A /* MeueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeueController.h; sourceTree = "<group>"; };
+		BBAF80E914152F080068CD4A /* MeueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeueController.m; sourceTree = "<group>"; };
+		BBB5CCF01416223E002F9280 /* Ants.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ants.grains; sourceTree = "<group>"; };
+		BBB5CCF11416223E002F9280 /* Beats.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Beats.grains; sourceTree = "<group>"; };
+		BBB5CCF21416223E002F9280 /* Brew.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Brew.grains; sourceTree = "<group>"; };
+		BBB5CCF31416223E002F9280 /* Matrix.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Matrix.grains; sourceTree = "<group>"; };
+		BBB5CCF41416223E002F9280 /* OSC.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = OSC.grains; sourceTree = "<group>"; };
+		BBB5CCF51416223E002F9280 /* Pong.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pong.grains; sourceTree = "<group>"; };
+		BBB5CCF61416223E002F9280 /* Triplets.grains */ = {isa = PBXFileReference; lastKnownFileType = file; path = Triplets.grains; sourceTree = "<group>"; };
 		BBBF616413DDBB25002FF327 /* VVBasics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVBasics.framework; sourceTree = "<group>"; };
 		BBBF616513DDBB25002FF327 /* VVOSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VVOSC.framework; sourceTree = "<group>"; };
 		BBC6133C13FBE64A000FEDA3 /* MyDocument 8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 8.xcdatamodel"; sourceTree = "<group>"; };
@@ -331,6 +350,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BBAF80EC141531EB0068CD4A /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				BBB5CCF01416223E002F9280 /* Ants.grains */,
+				BBB5CCF11416223E002F9280 /* Beats.grains */,
+				BBB5CCF21416223E002F9280 /* Brew.grains */,
+				BBB5CCF31416223E002F9280 /* Matrix.grains */,
+				BBB5CCF41416223E002F9280 /* OSC.grains */,
+				BBB5CCF51416223E002F9280 /* Pong.grains */,
+				BBB5CCF61416223E002F9280 /* Triplets.grains */,
+			);
+			path = Examples;
+			sourceTree = "<group>";
+		};
 		BBCF2C4413D986CC009D51DA = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +466,7 @@
 				BBCF2C8E13D98C3B009D51DA /* CloudValidation.plist */,
 				BBCD673B13F69CB600CED581 /* Third-party licenses.xhtml */,
 				BBCF2C9F13D98F05009D51DA /* Credits.rtf */,
+				BBAF80EC141531EB0068CD4A /* Examples */,
 				BBCF2C7913D98974009D51DA /* Image */,
 				BBCF2C7813D98926009D51DA /* Audio */,
 			);
@@ -494,6 +528,8 @@
 		BBCF2C9513D98D70009D51DA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BBAF80E814152F080068CD4A /* MeueController.h */,
+				BBAF80E914152F080068CD4A /* MeueController.m */,
 				BBCF2CC013D993AD009D51DA /* MyDocument.h */,
 				BBCF2CC113D993AD009D51DA /* MyDocument.mm */,
 				BBCF2CC213D993AD009D51DA /* MyWindowController.h */,
@@ -686,6 +722,13 @@
 				BBE95FC51413DCB900669E6E /* Sine.aif in Resources */,
 				BBE95FC61413DCB900669E6E /* Square.aif in Resources */,
 				BBE95FC71413DCB900669E6E /* Triangle.aif in Resources */,
+				BBB5CCF71416223E002F9280 /* Ants.grains in Resources */,
+				BBB5CCF81416223E002F9280 /* Beats.grains in Resources */,
+				BBB5CCF91416223E002F9280 /* Brew.grains in Resources */,
+				BBB5CCFA1416223E002F9280 /* Matrix.grains in Resources */,
+				BBB5CCFB1416223E002F9280 /* OSC.grains in Resources */,
+				BBB5CCFC1416223E002F9280 /* Pong.grains in Resources */,
+				BBB5CCFD1416223E002F9280 /* Triplets.grains in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +799,7 @@
 				BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */,
 				BBF96F9B13F82554009856F9 /* Math.m in Sources */,
 				BB7CC9CD13FA7E6D005DB313 /* Buffer.m in Sources */,
+				BBAF80EA14152F080068CD4A /* MeueController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

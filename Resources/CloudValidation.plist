@@ -63,7 +63,7 @@
 		<key>max</key>
 		<integer>100000</integer>
 		<key>min</key>
-		<integer>3</integer>
+		<integer>1</integer>
 	</dict>
 	<key>pan</key>
 	<dict>

@@ -28,6 +28,7 @@
 {
 	[self stopObservingOSCManager];
 	[self removeObserver:self forKeyPath:@"address"];
+	[self removeObserver:self forKeyPath:@"listenForNextAdress"];
     [super  didTurnIntoFault];
 }
 
