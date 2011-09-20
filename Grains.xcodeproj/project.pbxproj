@@ -11,6 +11,8 @@
 		BB44CD5F13DAD88100138144 /* MyDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CE913D99477009D51DA /* MyDocument.xcdatamodeld */; };
 		BB69B4E013EC540C00BC8D7F /* GausianRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */; };
 		BB69B4E313EC542100BC8D7F /* GausianRandom.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB69B4E213EC542100BC8D7F /* GausianRandom.xib */; };
+		BB6FCE01142882A00018FAD4 /* EFLaceViewLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB6FCE00142882A00018FAD4 /* EFLaceViewLib.framework */; };
+		BB6FCE02142882A30018FAD4 /* EFLaceViewLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BB6FCE00142882A00018FAD4 /* EFLaceViewLib.framework */; };
 		BB7CC9C713FA78C7005DB313 /* Buffer.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7CC9C613FA78C7005DB313 /* Buffer.xib */; };
 		BB7CC9CD13FA7E6D005DB313 /* Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7CC9CC13FA7E6D005DB313 /* Buffer.m */; };
 		BBAF80EA14152F080068CD4A /* MeueController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF80E914152F080068CD4A /* MeueController.m */; };
@@ -106,7 +108,6 @@
 		BBCF2DC813D9C6E4009D51DA /* ExpandView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CB213D99378009D51DA /* ExpandView.m */; };
 		BBCF2DC913D9C6E4009D51DA /* ExponetialTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CB413D99378009D51DA /* ExponetialTransformer.m */; };
 		BBCF2DCA13D9C6E4009D51DA /* AudioFileTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF2CAC13D9934D009D51DA /* AudioFileTransformer.m */; };
-		BBCF2DEB13D9CD6D009D51DA /* EFLaceViewLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */; };
 		BBCF2DED13D9D1D7009D51DA /* Top Hat 2.icns in Resources */ = {isa = PBXBuildFile; fileRef = BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */; };
 		BBE95FC41413DCB900669E6E /* Sawtooth.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FBF1413DCB900669E6E /* Sawtooth.aif */; };
 		BBE95FC51413DCB900669E6E /* Sine.aif in Resources */ = {isa = PBXBuildFile; fileRef = BBE95FC01413DCB900669E6E /* Sine.aif */; };
@@ -127,6 +128,7 @@
 				BBC8F9E113E2BACE0011CA52 /* VVBasics.framework in CopyFiles */,
 				BBC8F9E213E2BACE0011CA52 /* VVOSC.framework in CopyFiles */,
 				BB1FB30E1416052A0050AA5C /* DDMathParser.framework in CopyFiles */,
+				BB6FCE02142882A30018FAD4 /* EFLaceViewLib.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +138,7 @@
 		BB69B4DE13EC540C00BC8D7F /* GausianRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GausianRandom.h; sourceTree = "<group>"; };
 		BB69B4DF13EC540C00BC8D7F /* GausianRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GausianRandom.m; sourceTree = "<group>"; };
 		BB69B4E213EC542100BC8D7F /* GausianRandom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GausianRandom.xib; sourceTree = "<group>"; };
+		BB6FCE00142882A00018FAD4 /* EFLaceViewLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EFLaceViewLib.framework; sourceTree = "<group>"; };
 		BB7CC9C413FA7722005DB313 /* MyDocument 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "MyDocument 7.xcdatamodel"; sourceTree = "<group>"; };
 		BB7CC9C613FA78C7005DB313 /* Buffer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Buffer.xib; sourceTree = "<group>"; };
 		BB7CC9CB13FA7E6D005DB313 /* Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Buffer.h; sourceTree = "<group>"; };
@@ -314,7 +317,6 @@
 		BBCF2D8A13D996FC009D51DA /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		BBCF2D8B13D996FC009D51DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BBCF2D8E13D99705009D51DA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EFLaceViewLib.framework; path = ../../EFLaceView/build/Release/EFLaceViewLib.framework; sourceTree = "<group>"; };
 		BBCF2DEC13D9D1D7009D51DA /* Top Hat 2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Top Hat 2.icns"; sourceTree = "<group>"; };
 		BBE95FBE1413DCB900669E6E /* generate.ck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generate.ck; sourceTree = "<group>"; };
 		BBE95FBF1413DCB900669E6E /* Sawtooth.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sawtooth.aif; sourceTree = "<group>"; };
@@ -340,10 +342,10 @@
 				BBCF2DA213D99ADC009D51DA /* AppKit.framework in Frameworks */,
 				BBCF2DA313D99ADC009D51DA /* CoreData.framework in Frameworks */,
 				BBCF2DA413D99ADC009D51DA /* Foundation.framework in Frameworks */,
-				BBCF2DEB13D9CD6D009D51DA /* EFLaceViewLib.framework in Frameworks */,
 				BBBF616613DDBB25002FF327 /* VVBasics.framework in Frameworks */,
 				BBBF616713DDBB25002FF327 /* VVOSC.framework in Frameworks */,
 				BBF96FD813F83309009856F9 /* DDMathParser.framework in Frameworks */,
+				BB6FCE01142882A00018FAD4 /* EFLaceViewLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +387,7 @@
 		BBCF2C5213D986CC009D51DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB6FCE00142882A00018FAD4 /* EFLaceViewLib.framework */,
 				BBF96FD713F83309009856F9 /* DDMathParser.framework */,
 				BBBF616413DDBB25002FF327 /* VVBasics.framework */,
 				BBBF616513DDBB25002FF327 /* VVOSC.framework */,
@@ -393,7 +396,6 @@
 				BBCF2D8B13D996FC009D51DA /* QuartzCore.framework */,
 				BBCF2D8813D996EE009D51DA /* WebKit.framework */,
 				BBCF2C5313D986CC009D51DA /* Cocoa.framework */,
-				BBCF2DEA13D9CD6D009D51DA /* EFLaceViewLib.framework */,
 				BBCF2C5513D986CC009D51DA /* Other Frameworks */,
 			);
 			path = Frameworks;
