@@ -12,13 +12,12 @@
 
 #import "CAXException.h"
 
-#import <objc/runtime.h>
 
 static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBufferRef inCompleteAQBuffer) 
 {
 	@autoreleasepool { // The AudioQueue thread has no own autoreleasepool so we use ower own.
 		
-		Audio* audio = (Audio*)objc_unretainedObject(inUserData);
+		Audio* audio = (__bridge Audio*)inUserData;
 		
 		Float32* outBuffer = (Float32*)inCompleteAQBuffer->mAudioData;
 		memset(outBuffer, 0, inCompleteAQBuffer->mAudioDataBytesCapacity);
@@ -97,13 +96,13 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 		
 		tempBufferList = CABufferList::New(*mDataFormat);
 		
-		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (void*)objc_unretainedPointer(self), CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
+		OSStatus result = AudioQueueNewOutput(mDataFormat, AQBufferCallback, (__bridge void*)self, CFRunLoopGetCurrent(), kCFRunLoopCommonModes, 0, &mQueue);
 		if(result) NSLog(@"AudioQueueNew failed");
 		
 		for (int i = 0; i < kNumberBuffers; ++i) {
 			result = AudioQueueAllocateBuffer(mQueue, bufferByteSize, &mBuffers[i]);
 			if(result) NSLog(@"AudioQueueAllocateBuffer failed");
-			AQBufferCallback ((void*)objc_unretainedPointer(self), mQueue, mBuffers[i]);
+			AQBufferCallback ((__bridge void*)self, mQueue, mBuffers[i]);
 		}	
 	}
 	return self;
@@ -148,7 +147,7 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 	recordingFile = new CAExtAudioFile();
 	// Can't find corect formating for anything other than caf
 	// CAStreamBasicDescription* fileFormat = new CAStreamBasicDescription(mDataFormat->mSampleRate, mDataFormat->mChannelsPerFrame, CAStreamBasicDescription::kPCMFormatFixed824, false);
-	recordingFile->CreateWithURL((CFURLRef)objc_unretainedPointer(url), kAudioFileCAFType, *mDataFormat, NULL /* ChannelLayout */, kAudioFileFlags_EraseFile /* Flags */);
+	recordingFile->CreateWithURL((__bridge CFURLRef)url, kAudioFileCAFType, *mDataFormat, NULL /* ChannelLayout */, kAudioFileFlags_EraseFile /* Flags */);
 	// recordingFile->SetClientFormat(*mDataFormat);
 	isRecording = YES;
 }
@@ -197,13 +196,17 @@ static void AQBufferCallback(void* inUserData, AudioQueueRef inAQ, AudioQueueBuf
 
 - (void)openAudioFileOfCloud:(Cloud*)cloud{
 	if (cloud.audioFileUrl != NULL) {
-		CAExtAudioFile* audioFile = new CAExtAudioFile();
-		audioFile->OpenURL((CFURLRef)objc_unretainedPointer(cloud.audioFileUrl));
-		audioFile->SetClientFormat(*mDataFormat);
-		cloud->numberOfFrames = (UInt32)audioFile->GetNumberFrames();
-		cloud->audioFileBuffer->AllocateBuffers(mDataFormat->FramesToBytes(cloud->numberOfFrames));
-		audioFile->Read(cloud->numberOfFrames, &cloud->audioFileBuffer->GetModifiableBufferList());
-		
+		CAExtAudioFile audioFile;
+		try {
+			audioFile.OpenURL((__bridge CFURLRef)cloud.audioFileUrl);
+			audioFile.SetClientFormat(*mDataFormat);
+			cloud->numberOfFrames = (UInt32)audioFile.GetNumberFrames();
+			cloud->audioFileBuffer->AllocateBuffers(mDataFormat->FramesToBytes(cloud->numberOfFrames));
+			audioFile.Read(cloud->numberOfFrames, &cloud->audioFileBuffer->GetModifiableBufferList());
+		} catch (CAXException e) {
+			// wrong URL: reload
+			cloud.waveForm = cloud.waveForm;
+		}
 	}
 }
 

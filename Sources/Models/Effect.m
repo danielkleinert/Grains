@@ -56,7 +56,7 @@
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"output"])	{
+	if ([(__bridge NSString*)context isEqualToString:@"output"]) {
 		for (Connection* reseiverConnection in self.reseiverConections) {
 			NSNumber* value = [NSNumber numberWithFloat:[output floatValue]];
 			[reseiverConnection.reseiver validateValue:&value forKey:reseiverConnection.keyPath error:NULL];

@@ -45,13 +45,13 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"address"])	{
+	if ([(__bridge NSString*)context isEqualToString:@"address"])	{
 		if ([change objectForKey:NSKeyValueChangeNotificationIsPriorKey] == [NSNumber numberWithBool:YES]) {
 			[self stopObservingOSCManager];
 		} else {
 			[self startObservingOSCManager];
 		}
-	} else if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"listenForNextAdress"])	{
+	} else if ([(__bridge NSString*)context isEqualToString:@"listenForNextAdress"])	{
 		if (listenForNextAdress) {
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resivedOSCMeassage:) name:nil object:[GrainsOSCManager manager]];
 		} else {

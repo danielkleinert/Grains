@@ -45,7 +45,7 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"script"])	{
+	if ([(__bridge NSString*)context isEqualToString:@"script"])	{
 		[self calculate];
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

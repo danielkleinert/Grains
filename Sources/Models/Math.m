@@ -34,7 +34,7 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	if ([(NSString*)objc_unretainedObject(context) isEqualToString:@"formula"])	{
+	if ([(__bridge NSString*)context isEqualToString:@"formula"])	{
 		[self calculate];
 	} else {
 		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

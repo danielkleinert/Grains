@@ -141,10 +141,10 @@ inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x)
 											  saturation:[[saturationAnimationValues objectAtIndex:i] floatValue]
 											  brightness:[[brightnessAnimationValues objectAtIndex:i] floatValue]
 												   alpha:1]; 
-			[cgColorAnimationValues addObject:(id)objc_unretainedObject(CGColorCreateGenericRGB(color.redComponent, color.greenComponent, color.blueComponent, 1))];
+			[cgColorAnimationValues addObject:(__bridge_transfer id)CGColorCreateGenericRGB(color.redComponent, color.greenComponent, color.blueComponent, 1)];
 		}
 		
-		circleLayer.fillColor = (CGColorRef)objc_unretainedPointer([cgColorAnimationValues lastObject]);
+		circleLayer.fillColor = (__bridge CGColorRef)([cgColorAnimationValues lastObject]);
 		CAKeyframeAnimation* colorAnimation = [CAKeyframeAnimation animation];
 		colorAnimation.keyPath = @"fillColor";
 		colorAnimation.values = cgColorAnimationValues;
@@ -168,10 +168,6 @@ inline float clamp(float x, float a, float b){return x < a ? a : (x > b ? b : x)
 		
 		
 		// Cleanup
-		
-		for(id color in cgColorAnimationValues){
-			CGColorRelease((CGColorRef)objc_unretainedPointer(color));
-		}
 		CGPathRelease(circle);
 		
 		[CATransaction commit];
